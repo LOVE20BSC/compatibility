@@ -1,0 +1,16 @@
+{
+  "profile": "anvil",
+  "mode": "local",
+  "notes": "本地基准：把 Uniswap V2 参考实现（uni-v2-core@v1.0.1 / uni-v2-periphery）部署在内存里，作为判读 PancakeSwap 差异的基线。",
+  "chainId": 31337,
+  "rpc": [],
+  "reference": {
+    "core": "github.com/Uniswap/v2-core@4dd59067c76dea4a0e8e4bfdda41877a6b16dedc",
+    "periphery": "github.com/Uniswap/v2-periphery@ed24991304291297c3b4a52818d02f46a17aa9a2",
+    "solcCore": "0.5.16",
+    "solcPeriphery": "0.6.6",
+    "license": "GPL-3.0"
+  },
+  "addresses": {},
+  "labels": {}
+}

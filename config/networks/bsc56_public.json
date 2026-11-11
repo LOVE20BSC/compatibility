@@ -1,0 +1,25 @@
+{
+  "profile": "bsc56_public",
+  "mode": "fork",
+  "notes": "公开 RPC 不是 archive 节点，历史状态深度约 100 块；forkBlock=0 表示 fork 到节点最新高度，实际使用的区块会写入本 profile 的证据文件。接入 archive 节点后可在此填写具体区块号以获得完全可复现的结果。",
+  "chainId": 56,
+  "rpc": [
+    "https://bsc-mainnet.public.blastapi.io",
+    "https://bsc.meowrpc.com",
+    "https://api.zan.top/bsc-mainnet"
+  ],
+  "forkBlock": 122503000,
+  "headObserved": 122470776,
+  "addresses": {
+    "pair": "derive",
+    "factory": "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73",
+    "router": "0x10ED43C718714eb63d5aA57B78B54704E256024E",
+    "wbnb": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+  },
+  "labels": {
+    "wbnb": "WBNB Token",
+    "factory": "PancakeSwap V2: Factory",
+    "router": "PancakeSwap V2: Router 2"
+  },
+  "forkBlockPolicy": "pinned (archive endpoints)"
+}

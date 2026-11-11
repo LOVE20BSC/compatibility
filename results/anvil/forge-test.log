@@ -1,0 +1,26 @@
+No files changed, compilation skipped
+
+Ran 11 tests for test/CompatibilityProbe.t.sol:CompatibilityProbe
+[PASS] test_01_wrapper() (gas: 201223)
+[PASS] test_02_factory() (gas: 3378758)
+[PASS] test_03_pairMint() (gas: 529665)
+[PASS] test_04_pairBurnBoundary() (gas: 552421)
+[PASS] test_05_pairProtocolFee() (gas: 665607)
+[PASS] test_06_pairErc20() (gas: 389689)
+[PASS] test_07_routerQuote() (gas: 327858)
+[PASS] test_08_routerSwap() (gas: 557908)
+[PASS] test_09_routerFailures() (gas: 1197934)
+[PASS] test_10_stakeReplay() (gas: 2457807)
+[PASS] test_11_slippageGuard() (gas: 778519)
+Suite result: ok. 11 passed; 0 failed; 0 skipped; finished in 32.63ms (15.96ms CPU time)
+
+Ran 6 tests for test/CoreAuditFindings.t.sol:CoreAuditFindingsTest
+[PASS] testCurrentRoundSubmissionBlocksMerge() (gas: 31454612)
+[PASS] testCurrentRoundVoteBlocksMerge() (gas: 31558752)
+[PASS] testFakeTokenCannotSpendAnotherCommunityBoost() (gas: 37071901)
+[PASS] testFreshCapitalCanStillGrowProposalCountPastThresholdBound() (gas: 45370227)
+[PASS] testPrecreatedPairDoesNotBlockChildLaunch() (gas: 32032051)
+[PASS] testProposalCreationCallbackCannotMergeSource() (gas: 30351498)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 35.31ms (76.32ms CPU time)
+
+Ran 2 test suites in 44.71ms (67.94ms CPU time): 17 tests passed, 0 failed, 0 skipped (17 total tests)

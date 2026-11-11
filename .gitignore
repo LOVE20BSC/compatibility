@@ -1,0 +1,13 @@
+out/
+cache/
+cache-ref-*/
+.verify/
+results/tmp_*
+.DS_Store
+
+# generated from the published Uniswap V2 build artefacts
+src/fixtures/ReferenceCode.sol
+
+# Vendored external dependencies: each is its own upstream checkout (Uniswap V2, PancakeSwap,
+# BNB genesis). They are pinned by foundry.toml + results evidence, not by this repository.
+lib/

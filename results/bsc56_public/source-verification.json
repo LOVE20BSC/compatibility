@@ -1,0 +1,179 @@
+{
+  "profile": "bsc56_public",
+  "chainId": 56,
+  "rpc": [
+    "https://bsc-mainnet.public.blastapi.io",
+    "https://bsc.meowrpc.com",
+    "https://api.zan.top/bsc-mainnet"
+  ],
+  "rpcHealthy": [
+    "https://bsc-mainnet.public.blastapi.io",
+    "https://bsc.meowrpc.com",
+    "https://api.zan.top/bsc-mainnet"
+  ],
+  "observedBlock": 122508331,
+  "pinnedBlock": 122503000,
+  "targets": {
+    "pair": {
+      "address": "0x804678fa97d91b974ec2af3c843270886528a9e6",
+      "rpcFailures": {},
+      "agreementAcrossRpc": true,
+      "codeSize": 14981,
+      "codeSha256": {
+        "https://bsc-mainnet.public.blastapi.io": "ab89a0244c7e5a86aa8e1673b4c5b825db93bc406c7934e923ebb0a7c4548ac7",
+        "https://bsc.meowrpc.com": "ab89a0244c7e5a86aa8e1673b4c5b825db93bc406c7934e923ebb0a7c4548ac7",
+        "https://api.zan.top/bsc-mainnet": "ab89a0244c7e5a86aa8e1673b4c5b825db93bc406c7934e923ebb0a7c4548ac7"
+      },
+      "metadata": {
+        "kind": "bzzr1",
+        "metadataBytes": 52
+      },
+      "codeSizeNoMetadata": 14929,
+      "match": null,
+      "attempts": 24,
+      "interface": {
+        "token0()": {
+          "selector": "0x0dfe1681",
+          "present": true
+        },
+        "getReserves()": {
+          "selector": "0x0902f1ac",
+          "present": true
+        },
+        "totalSupply()": {
+          "selector": "0x18160ddd",
+          "present": true
+        },
+        "mint(address)": {
+          "selector": "0x6a627842",
+          "present": true
+        },
+        "burn(address)": {
+          "selector": "0x89afcb44",
+          "present": true
+        },
+        "transfer(address,uint256)": {
+          "selector": "0xa9059cbb",
+          "present": true
+        },
+        "approve(address,uint256)": {
+          "selector": "0x095ea7b3",
+          "present": true
+        },
+        "transferFrom(address,address,uint256)": {
+          "selector": "0x23b872dd",
+          "present": true
+        },
+        "allPresent": true
+      }
+    },
+    "factory": {
+      "address": "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73",
+      "rpcFailures": {},
+      "agreementAcrossRpc": true,
+      "codeSize": 19084,
+      "codeSha256": {
+        "https://bsc-mainnet.public.blastapi.io": "74aa65f879c1865d63680e869d990a43a151431b52836929dd0d166e4f056f7f",
+        "https://bsc.meowrpc.com": "74aa65f879c1865d63680e869d990a43a151431b52836929dd0d166e4f056f7f",
+        "https://api.zan.top/bsc-mainnet": "74aa65f879c1865d63680e869d990a43a151431b52836929dd0d166e4f056f7f"
+      },
+      "metadata": {
+        "kind": "bzzr1",
+        "metadataBytes": 186
+      },
+      "codeSizeNoMetadata": 18898,
+      "match": null,
+      "attempts": 24,
+      "interface": {
+        "getPair(address,address)": {
+          "selector": "0xe6a43905",
+          "present": true
+        },
+        "createPair(address,address)": {
+          "selector": "0xc9c65396",
+          "present": true
+        },
+        "allPresent": true
+      }
+    },
+    "router": {
+      "address": "0x10ED43C718714eb63d5aA57B78B54704E256024E",
+      "rpcFailures": {},
+      "agreementAcrossRpc": true,
+      "codeSize": 21936,
+      "codeSha256": {
+        "https://bsc-mainnet.public.blastapi.io": "4271c7697da84568c79ed22a5376d2b79cd2c37589170ef4d12dd284d5afa22e",
+        "https://bsc.meowrpc.com": "4271c7697da84568c79ed22a5376d2b79cd2c37589170ef4d12dd284d5afa22e",
+        "https://api.zan.top/bsc-mainnet": "4271c7697da84568c79ed22a5376d2b79cd2c37589170ef4d12dd284d5afa22e"
+      },
+      "metadata": {
+        "kind": "ipfs",
+        "metadataBytes": 53
+      },
+      "codeSizeNoMetadata": 21883,
+      "match": null,
+      "attempts": 48,
+      "interface": {
+        "getAmountsOut(uint256,address[])": {
+          "selector": "0xd06ca61f",
+          "present": true
+        },
+        "swapExactTokensForTokens(uint256,uint256,address[],address,uint256)": {
+          "selector": "0x38ed1739",
+          "present": true
+        },
+        "allPresent": true
+      }
+    },
+    "wbnb": {
+      "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+      "rpcFailures": {},
+      "agreementAcrossRpc": true,
+      "codeSize": 3124,
+      "codeSha256": {
+        "https://bsc-mainnet.public.blastapi.io": "e96eee25c3a063ffcfbe4ae2aa2c44e5c99ddf236adb7828676f6fd7f8605742",
+        "https://bsc.meowrpc.com": "e96eee25c3a063ffcfbe4ae2aa2c44e5c99ddf236adb7828676f6fd7f8605742",
+        "https://api.zan.top/bsc-mainnet": "e96eee25c3a063ffcfbe4ae2aa2c44e5c99ddf236adb7828676f6fd7f8605742"
+      },
+      "metadata": {
+        "kind": "none",
+        "metadataBytes": 0
+      },
+      "codeSizeNoMetadata": 3124,
+      "match": null,
+      "attempts": 24,
+      "interface": {
+        "deposit()": {
+          "selector": "0xd0e30db0",
+          "present": true
+        },
+        "withdraw(uint256)": {
+          "selector": "0x2e1a7d4d",
+          "present": true
+        },
+        "balanceOf(address)": {
+          "selector": "0x70a08231",
+          "present": true
+        },
+        "transfer(address,uint256)": {
+          "selector": "0xa9059cbb",
+          "present": true
+        },
+        "approve(address,uint256)": {
+          "selector": "0x095ea7b3",
+          "present": true
+        },
+        "transferFrom(address,address,uint256)": {
+          "selector": "0x23b872dd",
+          "present": true
+        },
+        "decimals()": {
+          "selector": "0x313ce567",
+          "present": true
+        },
+        "allPresent": true
+      }
+    }
+  },
+  "verdict": "mismatch"
+}

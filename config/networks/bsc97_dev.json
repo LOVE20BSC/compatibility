@@ -1,0 +1,23 @@
+{
+  "profile": "bsc97_dev",
+  "mode": "fork",
+  "notes": "BSC 测试网（Chapel, 97）PancakeSwap V2 部署；布署代码与主网不同（factory/router 体积明显更小），单独鉴定。 ",
+  "chainId": 97,
+  "rpc": [
+    "https://bsc-testnet.publicnode.com"
+  ],
+  "forkBlock": 131648000,
+  "headObserved": 131616095,
+  "addresses": {
+    "pair": "derive",
+    "factory": "0x6725F303b657a9451D8BA641348b6761A6CC7a17",
+    "router": "0xD99D1c33F9fC3444f8101754aBC46c52416550D1",
+    "wbnb": "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd"
+  },
+  "labels": {
+    "wbnb": "WBNB Token (Chapel)",
+    "factory": "PancakeSwap V2: Factory (Chapel)",
+    "router": "PancakeSwap V2: Router (Chapel)"
+  },
+  "forkBlockPolicy": "pinned; only one archive endpoint answered for this network"
+}

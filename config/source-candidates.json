@@ -1,0 +1,257 @@
+{
+  "units": {
+    "pcs-core": {
+      "source": "github.com/pancakeswap/pancake-swap-core@3b214306770e86bc3a64e67c2b5bdb566b4e94a7",
+      "license": "GPL-3.0",
+      "roots": {
+        "src": "pcs-core/contracts"
+      },
+      "exclude": [
+        "test"
+      ],
+      "solcVersions": [
+        "0.5.16"
+      ],
+      "optimizerRuns": [
+        200,
+        1000,
+        999999,
+        1,
+        5000
+      ],
+      "optimizerDisabled": true,
+      "remappings": {},
+      "evmVersions": [
+        "",
+        "istanbul"
+      ]
+    },
+    "pcs-periphery": {
+      "source": "github.com/pancakeswap/pancake-swap-periphery@d769a6d136b74fde82502ec2f9334acc1afc0732",
+      "license": "GPL-3.0",
+      "roots": {
+        "src": "pcs-periphery/contracts",
+        "src/_ext/core/contracts/interfaces": "pcs-core/contracts/interfaces",
+        "src/_ext/lib": "uniswap-lib"
+      },
+      "exclude": [
+        "test"
+      ],
+      "solcVersions": [
+        "0.6.6"
+      ],
+      "optimizerRuns": [
+        200,
+        1000,
+        999999,
+        1,
+        5000
+      ],
+      "optimizerDisabled": true,
+      "remappings": {
+        "@uniswap/v2-core/": "src/_ext/core/",
+        "@uniswap/lib/": "src/_ext/lib/"
+      },
+      "evmVersions": [
+        "",
+        "istanbul"
+      ]
+    },
+    "uni-v2-core": {
+      "source": "github.com/Uniswap/v2-core@4dd59067c76dea4a0e8e4bfdda41877a6b16dedc (tag v1.0.1)",
+      "license": "GPL-3.0",
+      "roots": {
+        "src": "uni-v2-core/contracts"
+      },
+      "exclude": [
+        "test"
+      ],
+      "solcVersions": [
+        "0.5.16"
+      ],
+      "optimizerRuns": [
+        200,
+        1000,
+        999999,
+        1,
+        5000
+      ],
+      "optimizerDisabled": true,
+      "remappings": {},
+      "evmVersions": [
+        "",
+        "istanbul"
+      ]
+    },
+    "uni-v2-periphery": {
+      "source": "github.com/Uniswap/v2-periphery@ed24991304291297c3b4a52818d02f46a17aa9a2",
+      "license": "GPL-3.0",
+      "roots": {
+        "src": "uni-v2-periphery/contracts",
+        "src/_ext/core/contracts/interfaces": "uni-v2-core/contracts/interfaces",
+        "src/_ext/lib": "uniswap-lib"
+      },
+      "exclude": [
+        "test"
+      ],
+      "solcVersions": [
+        "0.6.6"
+      ],
+      "optimizerRuns": [
+        200,
+        1000,
+        999999,
+        1,
+        5000
+      ],
+      "optimizerDisabled": true,
+      "remappings": {
+        "@uniswap/v2-core/": "src/_ext/core/",
+        "@uniswap/lib/": "src/_ext/lib/"
+      },
+      "evmVersions": [
+        "",
+        "istanbul"
+      ]
+    },
+    "wbnb": {
+      "source": "github.com/bnb-chain/bsc-genesis-contract@84641812a013eda1593e058aeed4dc116c7746eb",
+      "license": "Apache-2.0",
+      "roots": {
+        "src": "bsc-genesis/wbnb"
+      },
+      "exclude": [],
+      "solcVersions": [
+        "0.4.26"
+      ],
+      "optimizerRuns": [
+        200,
+        1000,
+        999999,
+        1,
+        5000
+      ],
+      "optimizerDisabled": true,
+      "remappings": {},
+      "evmVersions": [
+        "",
+        "istanbul"
+      ]
+    },
+    "weth9": {
+      "source": "github.com/Uniswap/v2-periphery@ed24991304291297c3b4a52818d02f46a17aa9a2 (contracts/test/WETH9.sol)",
+      "license": "GPL-3.0",
+      "roots": {
+        "src": "uni-v2-periphery/contracts/test"
+      },
+      "exclude": [
+        "DeflatingERC20.sol",
+        "RouterEventEmitter.sol",
+        "ERC20.sol"
+      ],
+      "solcVersions": [
+        "0.6.6"
+      ],
+      "optimizerRuns": [
+        200,
+        1000,
+        999999,
+        1,
+        5000
+      ],
+      "optimizerDisabled": true,
+      "remappings": {},
+      "evmVersions": [
+        "",
+        "istanbul"
+      ]
+    }
+  },
+  "pair": [
+    {
+      "unit": "pcs-core",
+      "file": "PancakePair.sol",
+      "contract": "PancakePair"
+    },
+    {
+      "unit": "uni-v2-core",
+      "file": "UniswapV2Pair.sol",
+      "contract": "UniswapV2Pair"
+    }
+  ],
+  "factory": [
+    {
+      "unit": "pcs-core",
+      "file": "PancakeFactory.sol",
+      "contract": "PancakeFactory"
+    },
+    {
+      "unit": "uni-v2-core",
+      "file": "UniswapV2Factory.sol",
+      "contract": "UniswapV2Factory"
+    }
+  ],
+  "router": [
+    {
+      "unit": "pcs-periphery",
+      "file": "PancakeRouter.sol",
+      "contract": "PancakeRouter"
+    },
+    {
+      "unit": "pcs-periphery",
+      "file": "PancakeRouter01.sol",
+      "contract": "PancakeRouter01"
+    },
+    {
+      "unit": "uni-v2-periphery",
+      "file": "UniswapV2Router02.sol",
+      "contract": "UniswapV2Router02"
+    },
+    {
+      "unit": "uni-v2-periphery",
+      "file": "UniswapV2Router01.sol",
+      "contract": "UniswapV2Router01"
+    }
+  ],
+  "wbnb": [
+    {
+      "unit": "wbnb",
+      "file": "WBNB.sol",
+      "contract": "WBNB"
+    },
+    {
+      "unit": "weth9",
+      "file": "WETH9.sol",
+      "contract": "WETH9"
+    }
+  ],
+  "interfaceRequirements": {
+    "pair": [
+      "token0()",
+      "getReserves()",
+      "totalSupply()",
+      "mint(address)",
+      "burn(address)",
+      "transfer(address,uint256)",
+      "approve(address,uint256)",
+      "transferFrom(address,address,uint256)"
+    ],
+    "factory": [
+      "getPair(address,address)",
+      "createPair(address,address)"
+    ],
+    "router": [
+      "getAmountsOut(uint256,address[])",
+      "swapExactTokensForTokens(uint256,uint256,address[],address,uint256)"
+    ],
+    "wbnb": [
+      "deposit()",
+      "withdraw(uint256)",
+      "balanceOf(address)",
+      "transfer(address,uint256)",
+      "approve(address,uint256)",
+      "transferFrom(address,address,uint256)",
+      "decimals()"
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+[profile.default]
+src = "src"
+test = "test"
+out = "out"
+cache_path = "cache"
+script = "script"
+solc_version = "0.8.37"
+evm_version = "osaka"
+optimizer = true
+optimizer_runs = 200
+bytecode_hash = "none"
+cbor_metadata = false
+remappings = [
+  "@core/=lib/core/src/",
+  "@uni-core/=lib/uni-v2-core/contracts/",
+  "@uni-periphery/=lib/uni-v2-periphery/contracts/",
+  "@uniswap/lib/=lib/uniswap-lib/",
+]
+# Each profile writes its own evidence file under results/<profile>/.
+# `vm.getCode` reads the reference artefacts built by the ref-* profiles out of `out/`.
+fs_permissions = [{ access = "read-write", path = "./results" }, { access = "read", path = "./out" }]
+
+# The local baseline is the pinned Uniswap V2 reference. It is compiled by its own profiles because
+# it needs older compilers, and shares `out/` so the tests can deploy it through `vm.getCode`.
+
+[profile.ref-uni-core]
+src = "lib/uni-v2-core/contracts"
+# no test sources here: they are 0.8.37 and this profile pins 0.5.16
+test = "lib/uni-v2-core/contracts"
+out = "out"
+cache_path = "cache-ref-core"
+solc_version = "0.5.16"
+evm_version = "istanbul"
+optimizer = true
+optimizer_runs = 999999
+bytecode_hash = "none"
+cbor_metadata = false
+
+[profile.ref-uni-periphery]
+src = "lib/uni-v2-periphery/contracts"
+test = "lib/uni-v2-periphery/contracts"
+out = "out"
+cache_path = "cache-ref-periphery"
+solc_version = "0.6.6"
+evm_version = "istanbul"
+optimizer = true
+optimizer_runs = 999999
+bytecode_hash = "none"
+cbor_metadata = false
+remappings = [
+  "@uniswap/v2-core/=lib/uni-v2-core/",
+  "@uniswap/lib/=lib/uniswap-lib/",
+]
+
+[profile.ref-weth]
+src = "lib/uni-v2-periphery/contracts/test"
+test = "lib/uni-v2-periphery/contracts/test"
+out = "out"
+cache_path = "cache-ref-weth"
+solc_version = "0.6.6"
+evm_version = "istanbul"
+optimizer = true
+optimizer_runs = 999999
+bytecode_hash = "none"
+cbor_metadata = false
+remappings = ["@uniswap/lib/=lib/uniswap-lib/"]
+
+# Mirror the business repos' lint gate: test sources are probe scripts, not production code.
+[lint]
+severity = ["high", "med", "low"]
+ignore = ["test/**/*.sol"]
+exclude_lints = ["calls-loop", "reentrancy-events", "unused-return"]

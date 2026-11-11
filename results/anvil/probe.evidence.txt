@@ -1,0 +1,1040 @@
+# profile=anvil block=1
+probe=pair.tokenOrder status=PASS token0 is the lower address
+probe=pair.lpApproveReturnsBool status=PASS Stake requires the boolean
+verdict_failures=0
+probe=factory.getPair status=PASS symmetric and zero when unknown
+probe=pair.burnBelowGuardReverts status=PASS lp=31
+probe=stake.slippageGuardRejects status=PASS a deposit off the pool ratio must fail at zero slippage
+probe=pair.failedBurnKeepsLp status=PASS got=31 want=31
+probe=factory.createPair status=PASS must return the pair
+probe=stake.slippageErrorSelector status=FAIL must be SlippageExceeded
+probe=factory.registry status=PASS reverse lookup must find it
+probe=stake.slippageRollbackKeepsPool status=PASS 
+probe=stake.firstStakeExcludesTheLock status=PASS got=31622776601683792319 want=31622776601683792319
+probe=pair.firstMintLocksMinimum status=PASS got=31622776601683792319 want=31622776601683792319
+pair_feeToConfigured=0
+probe=wrapper.deposit status=FAIL got=7000000000000000000 want=1000000000000000000
+probe=pair.supplyCarriesLock status=PASS got=31622776601683793319 want=31622776601683793319
+probe=pair.burnAtGuardPaysOut status=PASS lp=32
+probe=wrapper.supply status=PASS got=12000000000000000000 want=12000000000000000000
+probe=pair.lockIsUnownable status=PASS got=1000 want=1000
+probe=factory.allPairsLength status=PASS got=2 want=2
+probe=stake.slippageRollbackKeepsBalances status=PASS 
+probe=pair.lpSelfTransferReturnsBool status=PASS Stake transfers its LP into the pair
+probe=pair.secondMintIsProportional status=FAIL got=6324555320336758663 want=6324555320336758663800
+probe=factory.tokenOrder status=PASS token0 is the lower address
+pair_lpDecimals=18
+probe=wrapper.decimals status=PASS must be 18
+probe=stake.firstStakeTakesTheWholeBasis status=PASS got=31622776601683792319 want=31622776601683792319
+pair_smallestBurnableLp=32
+pair_firstMint=31622776601683792319
+probe=factory.duplicateReverts status=PASS a second create must fail
+probe=stake.noFeeBeforeAnyTrade status=PASS fee=0
+probe=wrapper.approveReturnsBool status=PASS Stake requires the boolean
+factory_allPairsLength=2
+probe=stake.withdrawableStartsAtTheBasis status=PASS 
+probe=wrapper.withdraw status=FAIL got=6000000000000000000 want=0
+wrapper_deposit=1000000000000000000
+probe=stake.secondStakeLandsOnTheMember status=PASS got=31622776601683793319 want=31622776601683793319
+probe=stake.secondStakePricesOffWithdrawable status=PASS got=31622776601683793319 want=31622776601683793319
+# profile=anvil block=1
+# profile=anvil block=1
+probe=wrapper.deposit status=FAIL got=7000000000000000000 want=1000000000000000000
+probe=wrapper.supply status=PASS got=12000000000000000000 want=12000000000000000000
+probe=wrapper.decimals status=PASS must be 18
+probe=wrapper.approveReturnsBool status=PASS Stake requires the boolean
+probe=stake.firstStakeExcludesTheLock status=PASS got=31622776601683792319 want=31622776601683792319
+probe=pair.lpApproveReturnsBool status=PASS Stake requires the boolean
+probe=wrapper.withdraw status=FAIL got=6000000000000000000 want=0
+probe=stake.firstStakeTakesTheWholeBasis status=PASS got=31622776601683792319 want=31622776601683792319
+probe=pair.lpSelfTransferReturnsBool status=PASS Stake transfers its LP into the pair
+wrapper_deposit=1000000000000000000
+probe=stake.noFeeBeforeAnyTrade status=PASS fee=0
+pair_lpDecimals=18
+pair_feeToConfigured=0
+probe=stake.withdrawableStartsAtTheBasis status=PASS 
+probe=stake.slippageGuardRejects status=PASS a deposit off the pool ratio must fail at zero slippage
+probe=stake.slippageErrorSelector status=FAIL must be SlippageExceeded
+probe=pair.burnBelowGuardReverts status=PASS lp=31
+probe=stake.slippageRollbackKeepsPool status=PASS 
+probe=pair.failedBurnKeepsLp status=PASS got=31 want=31
+probe=stake.slippageRollbackKeepsBalances status=PASS 
+probe=pair.tokenOrder status=PASS token0 is the lower address
+probe=router.quoteMatchesKnownFeeModel status=PASS quote=99690060900928
+probe=stake.secondStakeLandsOnTheMember status=PASS got=31622776601683793319 want=31622776601683793319
+probe=pair.burnAtGuardPaysOut status=PASS lp=32
+router_quote=99690060900928
+probe=factory.getPair status=PASS symmetric and zero when unknown
+pair_smallestBurnableLp=32
+probe=stake.secondStakePricesOffWithdrawable status=PASS got=31622776601683793319 want=31622776601683793319
+probe=pair.firstMintLocksMinimum status=PASS got=31622776601683792319 want=31622776601683792319
+probe=pair.supplyCarriesLock status=PASS got=31622776601683793319 want=31622776601683793319
+probe=router.amountOutMinTooHighReverts status=PASS an unattainable minimum must fail
+router_quote_model998=99790040953912
+verdict_failures=0
+probe=pair.lockIsUnownable status=PASS got=1000 want=1000
+pair_treasuryMint=0
+probe=factory.createPair status=PASS must return the pair
+probe=router.expiredDeadlineReverts status=PASS a stale deadline must fail
+pair_treasuryMint_denominator3=10540925533894597773
+router_quote_model997=99690060900928
+probe=pair.secondMintIsProportional status=FAIL got=6324555320336758663 want=6324555320336758663800
+probe=router.failedSwapKeepsReserves status=PASS a failed swap changes nothing
+pair_treasuryMint_denominator5=6324555320336758663
+probe=router.quoteIsNotUniswapV2 status=FAIL 997 model would give 99690060900928
+pair_firstMint=31622776601683792319
+probe=stake.settlementBurnsTheToken status=PASS burned=459197272939364049
+probe=factory.registry status=PASS reverse lookup must find it
+probe=pair.noTreasuryMint status=PASS nothing may be minted to a zero treasury
+probe=router.unregisteredPairReverts status=PASS an unknown pool must fail
+probe=stake.settlementSwapsParentSide status=PASS parent=173947079932574
+probe=factory.allPairsLength status=PASS got=2 want=2
+probe=stake.burnLeavesTheSupply status=PASS got=459197272939364049 want=459197272939364049
+probe=factory.tokenOrder status=PASS token0 is the lower address
+probe=stake.growthLeavesWithdrawable status=FAIL 
+probe=factory.duplicateReverts status=PASS a second create must fail
+stake_feeReclassified=12375340724184224
+factory_allPairsLength=2
+stake_feeRemainingAfterSettlement=6052022937919884
+probe=stake.oneSettlementPerRound status=PASS got=459197272939364049 want=459197272939364049
+# profile=anvil block=1
+verdict_failures=0
+probe=router.amountOutMinTooHighReverts status=PASS an unattainable minimum must fail
+probe=factory.getPair status=PASS symmetric and zero when unknown
+probe=wrapper.deposit status=FAIL got=7000000000000000000 want=1000000000000000000
+probe=pair.burnBelowGuardReverts status=PASS lp=31
+probe=stake.firstStakeExcludesTheLock status=PASS got=31622776601683792319 want=31622776601683792319
+probe=pair.tokenOrder status=PASS token0 is the lower address
+probe=wrapper.supply status=PASS got=12000000000000000000 want=12000000000000000000
+probe=router.quoteMatchesKnownFeeModel status=PASS quote=99690060900928
+probe=stake.slippageGuardRejects status=PASS a deposit off the pool ratio must fail at zero slippage
+probe=factory.createPair status=PASS must return the pair
+probe=stake.firstStakeTakesTheWholeBasis status=PASS got=31622776601683792319 want=31622776601683792319
+probe=pair.failedBurnKeepsLp status=PASS got=31 want=31
+probe=router.swapDeliversTheQuote status=PASS got=99690060900928 want=99690060900928
+probe=wrapper.decimals status=PASS must be 18
+probe=stake.noFeeBeforeAnyTrade status=PASS fee=0
+probe=router.expiredDeadlineReverts status=PASS a stale deadline must fail
+probe=router.swapMovesTheBalance status=PASS got=99690060900928 want=99690060900928
+probe=pair.burnAtGuardPaysOut status=PASS lp=32
+probe=pair.firstMintLocksMinimum status=PASS got=31622776601683792319 want=31622776601683792319
+probe=factory.registry status=PASS reverse lookup must find it
+probe=router.deadlineEqualToNowAccepted status=PASS Stake passes block.timestamp
+pair_smallestBurnableLp=32
+probe=pair.supplyCarriesLock status=PASS got=31622776601683793319 want=31622776601683793319
+router_quote=99690060900928
+pair_feeToConfigured=0
+probe=stake.slippageErrorSelector status=FAIL must be SlippageExceeded
+probe=wrapper.approveReturnsBool status=PASS Stake requires the boolean
+probe=stake.withdrawableStartsAtTheBasis status=PASS 
+probe=pair.lockIsUnownable status=PASS got=1000 want=1000
+router_swap_delivered=99690060900928
+probe=router.failedSwapKeepsReserves status=PASS a failed swap changes nothing
+probe=pair.lpApproveReturnsBool status=PASS Stake requires the boolean
+router_quote_model998=99790040953912
+probe=stake.slippageRollbackKeepsPool status=PASS 
+probe=router.parentSideDeliversQuote status=PASS got=996205794639082262 want=996205794639082262
+probe=pair.lpSelfTransferReturnsBool status=PASS Stake transfers its LP into the pair
+probe=wrapper.withdraw status=FAIL got=6000000000000000000 want=0
+probe=pair.secondMintIsProportional status=FAIL got=6324555320336758663 want=6324555320336758663800
+pair_treasuryMint=0
+probe=router.unregisteredPairReverts status=PASS an unknown pool must fail
+probe=factory.allPairsLength status=PASS got=2 want=2
+pair_lpDecimals=18
+router_quote_model997=99690060900928
+wrapper_deposit=1000000000000000000
+pair_firstMint=31622776601683792319
+probe=stake.secondStakeLandsOnTheMember status=PASS got=31622776601683793319 want=31622776601683793319
+probe=stake.slippageRollbackKeepsBalances status=PASS 
+probe=router.quoteIsNotUniswapV2 status=FAIL 997 model would give 99690060900928
+probe=factory.tokenOrder status=PASS token0 is the lower address
+pair_treasuryMint_denominator3=10540925533894597773
+probe=stake.secondStakePricesOffWithdrawable status=PASS got=31622776601683793319 want=31622776601683793319
+probe=factory.duplicateReverts status=PASS a second create must fail
+pair_treasuryMint_denominator5=6324555320336758663
+factory_allPairsLength=2
+probe=pair.noTreasuryMint status=PASS nothing may be minted to a zero treasury
+probe=stake.settlementBurnsTheToken status=PASS burned=459197272939364049
+probe=stake.settlementSwapsParentSide status=PASS parent=173947079932574
+probe=stake.burnLeavesTheSupply status=PASS got=459197272939364049 want=459197272939364049
+probe=stake.growthLeavesWithdrawable status=FAIL 
+stake_feeReclassified=12375340724184224
+stake_feeRemainingAfterSettlement=6052022937919884
+probe=stake.oneSettlementPerRound status=PASS got=459197272939364049 want=459197272939364049
+probe=stake.withdrawReturnsBothSides status=PASS 
+probe=stake.withdrawTokenShare status=PASS got=1149660367815446547354 want=1149660367815446547354
+probe=stake.withdrawParentShare status=PASS got=869822364879431267 want=869822364879431267
+probe=stake.positionIsCleared status=PASS got=0 want=0
+stake_withdraw_tokenOut=1149660367815446547354
+stake_withdraw_parentOut=869822364879431267
+# profile=anvil block=1
+probe=wrapper.deposit status=PASS got=1000000000000000000 want=1000000000000000000
+probe=factory.getPair status=PASS symmetric and zero when unknown
+probe=pair.tokenOrder status=PASS token0 is the lower address
+probe=pair.burnBelowGuardReverts status=PASS lp=31
+probe=pair.lpApproveReturnsBool status=PASS Stake requires the boolean
+probe=wrapper.supply status=PASS got=12000000000000000000 want=12000000000000000000
+probe=pair.failedBurnKeepsLp status=PASS got=31 want=31
+probe=router.quoteMatchesKnownFeeModel status=PASS quote=99690060900928
+probe=factory.createPair status=PASS must return the pair
+probe=router.swapDeliversTheQuote status=PASS got=99690060900928 want=99690060900928
+probe=stake.slippageGuardRejects status=PASS a deposit off the pool ratio must fail at zero slippage
+probe=router.amountOutMinTooHighReverts status=PASS an unattainable minimum must fail
+probe=stake.firstStakeExcludesTheLock status=PASS got=31622776601683792319 want=31622776601683792319
+router_quote=99690060900928
+probe=stake.slippageErrorSelector status=PASS must be SlippageExceeded
+probe=stake.firstStakeTakesTheWholeBasis status=PASS got=31622776601683792319 want=31622776601683792319
+probe=pair.burnAtGuardPaysOut status=PASS lp=32
+probe=router.expiredDeadlineReverts status=PASS a stale deadline must fail
+probe=stake.slippageRollbackKeepsPool status=PASS 
+probe=stake.noFeeBeforeAnyTrade status=PASS fee=0
+probe=pair.firstMintLocksMinimum status=PASS got=31622776601683792319 want=31622776601683792319
+router_quote_model998=99790040953912
+probe=stake.slippageRollbackKeepsBalances status=PASS 
+probe=router.failedSwapKeepsReserves status=PASS a failed swap changes nothing
+pair_smallestBurnableLp=32
+probe=wrapper.decimals status=PASS must be 18
+probe=pair.supplyCarriesLock status=PASS got=31622776601683793319 want=31622776601683793319
+probe=factory.registry status=PASS reverse lookup must find it
+probe=router.swapMovesTheBalance status=PASS got=99690060900928 want=99690060900928
+probe=wrapper.approveReturnsBool status=PASS Stake requires the boolean
+probe=pair.lockIsUnownable status=PASS got=1000 want=1000
+probe=stake.withdrawableStartsAtTheBasis status=PASS 
+probe=factory.allPairsLength status=PASS got=2 want=2
+router_quote_model997=99690060900928
+probe=pair.lpSelfTransferReturnsBool status=PASS Stake transfers its LP into the pair
+probe=router.unregisteredPairReverts status=PASS an unknown pool must fail
+probe=router.deadlineEqualToNowAccepted status=PASS Stake passes block.timestamp
+probe=factory.tokenOrder status=PASS token0 is the lower address
+probe=pair.secondMintIsProportional status=PASS got=6324555320336758663 want=6324555320336758663
+router_quote_model9975_per10000=99740050929919
+probe=wrapper.withdraw status=PASS got=6000000000000000000 want=6000000000000000000
+probe=factory.duplicateReverts status=PASS a second create must fail
+pair_firstMint=31622776601683792319
+wrapper_deposit=1000000000000000000
+router_swap_delivered=99690060900928
+pair_lpDecimals=18
+note=router.feeModel matched=30bps uniswapV2WouldGive=99690060900928
+pair_feeToConfigured=0
+probe=stake.secondStakeLandsOnTheMember status=PASS got=31622776601683793319 want=31622776601683793319
+factory_allPairsLength=2
+probe=stake.secondStakePricesOffWithdrawable status=PASS got=31622776601683793319 want=31622776601683793319
+probe=router.parentSideDeliversQuote status=PASS got=996205794639082262 want=996205794639082262
+pair_treasuryMint=0
+probe=stake.settlementBurnsTheToken status=PASS burned=459197272939364049
+pair_treasuryMint_denominator3=10540925533894597773
+probe=stake.settlementSwapsParentSide status=PASS parent=173947079932574
+pair_treasuryMint_denominator5=6324555320336758663
+probe=stake.burnLeavesTheSupply status=PASS got=459197272939364049 want=459197272939364049
+probe=pair.noTreasuryMint status=PASS nothing may be minted to a zero treasury
+probe=stake.growthLeavesWithdrawable status=FAIL 
+# profile=anvil block=1
+probe=stake.firstStakeExcludesTheLock status=PASS got=31622776601683792319 want=31622776601683792319
+probe=stake.firstStakeTakesTheWholeBasis status=PASS got=31622776601683792319 want=31622776601683792319
+probe=stake.noFeeBeforeAnyTrade status=PASS fee=0
+probe=stake.withdrawableStartsAtTheBasis status=PASS 
+probe=stake.secondStakeLandsOnTheMember status=PASS got=31622776601683793319 want=31622776601683793319
+probe=stake.secondStakePricesOffWithdrawable status=PASS got=31622776601683793319 want=31622776601683793319
+probe=stake.settlementBurnsTheToken status=PASS burned=459197272939364049
+probe=stake.settlementSwapsParentSide status=PASS parent=173947079932574
+probe=stake.burnLeavesTheSupply status=PASS got=459197272939364049 want=459197272939364049
+probe=stake.growthLeavesWithdrawable status=FAIL 
+# profile=anvil block=1
+probe=pair.tokenOrder status=PASS token0 is the lower address
+probe=pair.burnBelowGuardReverts status=PASS lp=31
+probe=pair.lpApproveReturnsBool status=PASS Stake requires the boolean
+probe=router.quoteMatchesKnownFeeModel status=PASS quote=99690060900928
+probe=pair.lpSelfTransferReturnsBool status=PASS Stake transfers its LP into the pair
+probe=pair.failedBurnKeepsLp status=PASS got=31 want=31
+probe=stake.firstStakeExcludesTheLock status=PASS got=31622776601683792319 want=31622776601683792319
+pair_lpDecimals=18
+probe=stake.slippageGuardRejects status=PASS a deposit off the pool ratio must fail at zero slippage
+probe=wrapper.deposit status=PASS got=1000000000000000000 want=1000000000000000000
+probe=factory.getPair status=PASS symmetric and zero when unknown
+router_quote=99690060900928
+probe=wrapper.supply status=PASS got=12000000000000000000 want=12000000000000000000
+probe=stake.firstStakeTakesTheWholeBasis status=PASS got=31622776601683792319 want=31622776601683792319
+probe=router.amountOutMinTooHighReverts status=PASS an unattainable minimum must fail
+probe=pair.burnAtGuardPaysOut status=PASS lp=32
+probe=router.swapDeliversTheQuote status=PASS got=99690060900928 want=99690060900928
+probe=stake.slippageErrorSelector status=PASS must be SlippageExceeded
+probe=pair.firstMintLocksMinimum status=PASS got=31622776601683792319 want=31622776601683792319
+probe=stake.noFeeBeforeAnyTrade status=PASS fee=0
+probe=factory.createPair status=PASS must return the pair
+probe=wrapper.decimals status=PASS must be 18
+router_quote_model998=99790040953912
+pair_smallestBurnableLp=32
+probe=router.swapMovesTheBalance status=PASS got=99690060900928 want=99690060900928
+probe=pair.supplyCarriesLock status=PASS got=31622776601683793319 want=31622776601683793319
+probe=stake.withdrawableStartsAtTheBasis status=PASS 
+probe=factory.registry status=PASS reverse lookup must find it
+probe=stake.slippageRollbackKeepsPool status=PASS 
+probe=router.expiredDeadlineReverts status=PASS a stale deadline must fail
+probe=factory.allPairsLength status=PASS got=2 want=2
+router_quote_model997=99690060900928
+probe=stake.slippageRollbackKeepsBalances status=PASS 
+probe=router.failedSwapKeepsReserves status=PASS a failed swap changes nothing
+probe=router.deadlineEqualToNowAccepted status=PASS Stake passes block.timestamp
+pair_feeToConfigured=0
+probe=pair.lockIsUnownable status=PASS got=1000 want=1000
+probe=wrapper.approveReturnsBool status=PASS Stake requires the boolean
+router_swap_delivered=99690060900928
+probe=factory.tokenOrder status=PASS token0 is the lower address
+probe=router.unregisteredPairReverts status=PASS an unknown pool must fail
+probe=pair.secondMintIsProportional status=PASS got=6324555320336758663 want=6324555320336758663
+probe=stake.secondStakeLandsOnTheMember status=PASS got=31622776601683793319 want=31622776601683793319
+router_quote_model9975_per10000=99740050929919
+pair_firstMint=31622776601683792319
+probe=router.parentSideDeliversQuote status=PASS got=996205794639082262 want=996205794639082262
+probe=stake.secondStakePricesOffWithdrawable status=PASS got=31622776601683793319 want=31622776601683793319
+probe=wrapper.withdraw status=PASS got=6000000000000000000 want=6000000000000000000
+probe=factory.duplicateReverts status=PASS a second create must fail
+pair_treasuryMint=0
+note=router.feeModel matched=30bps uniswapV2WouldGive=99690060900928
+wrapper_deposit=1000000000000000000
+factory_allPairsLength=2
+pair_treasuryMint_denominator3=10540925533894597773
+pair_treasuryMint_denominator5=6324555320336758663
+probe=stake.settlementBurnsTheToken status=PASS burned=459197272939364049
+probe=pair.noTreasuryMint status=PASS nothing may be minted to a zero treasury
+probe=stake.settlementSwapsParentSide status=PASS parent=173947079932574
+probe=stake.burnLeavesTheSupply status=PASS got=459197272939364049 want=459197272939364049
+stake_withdrawableAtRest=31622776601683792319
+probe=stake.growthLeavesWithdrawable status=FAIL 
+# profile=anvil block=1
+probe=stake.firstStakeExcludesTheLock status=PASS got=31622776601683792319 want=31622776601683792319
+probe=stake.firstStakeTakesTheWholeBasis status=PASS got=31622776601683792319 want=31622776601683792319
+probe=stake.noFeeBeforeAnyTrade status=PASS fee=0
+probe=stake.withdrawableStartsAtTheBasis status=PASS 
+probe=stake.secondStakeLandsOnTheMember status=PASS got=31622776601683793319 want=31622776601683793319
+probe=stake.secondStakePricesOffWithdrawable status=PASS got=31622776601683793319 want=31622776601683793319
+probe=stake.settlementBurnsTheToken status=PASS burned=459197272939364049
+probe=stake.settlementSwapsParentSide status=PASS parent=173947079932574
+probe=stake.burnLeavesTheSupply status=PASS got=459197272939364049 want=459197272939364049
+stake_withdrawableAtRest=31622776601683792319
+probe=stake.growthLeavesWithdrawable status=FAIL 
+# profile=anvil block=1
+probe=pair.tokenOrder status=PASS token0 is the lower address
+probe=factory.getPair status=PASS symmetric and zero when unknown
+probe=pair.lpApproveReturnsBool status=PASS Stake requires the boolean
+probe=wrapper.deposit status=PASS got=1000000000000000000 want=1000000000000000000
+probe=pair.lpSelfTransferReturnsBool status=PASS Stake transfers its LP into the pair
+probe=router.amountOutMinTooHighReverts status=PASS an unattainable minimum must fail
+probe=router.quoteMatchesKnownFeeModel status=PASS quote=99690060900928
+pair_feeToConfigured=0
+pair_lpDecimals=18
+probe=factory.createPair status=PASS must return the pair
+probe=wrapper.supply status=PASS got=12000000000000000000 want=12000000000000000000
+router_quote=99690060900928
+probe=pair.burnBelowGuardReverts status=PASS lp=31
+probe=stake.firstStakeExcludesTheLock status=PASS got=31622776601683792319 want=31622776601683792319
+probe=wrapper.decimals status=PASS must be 18
+probe=router.swapDeliversTheQuote status=PASS got=99690060900928 want=99690060900928
+probe=factory.registry status=PASS reverse lookup must find it
+probe=pair.firstMintLocksMinimum status=PASS got=31622776601683792319 want=31622776601683792319
+probe=stake.firstStakeTakesTheWholeBasis status=PASS got=31622776601683792319 want=31622776601683792319
+probe=router.expiredDeadlineReverts status=PASS a stale deadline must fail
+probe=wrapper.approveReturnsBool status=PASS Stake requires the boolean
+pair_treasuryMint=0
+probe=stake.noFeeBeforeAnyTrade status=PASS fee=0
+probe=router.failedSwapKeepsReserves status=PASS a failed swap changes nothing
+pair_treasuryMint_denominator3=10540925533894597773
+probe=router.swapMovesTheBalance status=PASS got=99690060900928 want=99690060900928
+probe=stake.withdrawableStartsAtTheBasis status=PASS 
+pair_treasuryMint_denominator5=6324555320336758663
+probe=wrapper.withdraw status=PASS got=6000000000000000000 want=6000000000000000000
+probe=router.unregisteredPairReverts status=PASS an unknown pool must fail
+probe=router.deadlineEqualToNowAccepted status=PASS Stake passes block.timestamp
+probe=pair.noTreasuryMint status=PASS nothing may be minted to a zero treasury
+wrapper_deposit=1000000000000000000
+probe=factory.allPairsLength status=PASS got=2 want=2
+probe=pair.failedBurnKeepsLp status=PASS got=31 want=31
+probe=pair.supplyCarriesLock status=PASS got=31622776601683793319 want=31622776601683793319
+router_quote_model998=99790040953912
+probe=stake.secondStakeLandsOnTheMember status=PASS got=31622776601683793319 want=31622776601683793319
+probe=pair.lockIsUnownable status=PASS got=1000 want=1000
+router_swap_delivered=99690060900928
+probe=stake.slippageGuardRejects status=PASS a deposit off the pool ratio must fail at zero slippage
+probe=pair.burnAtGuardPaysOut status=PASS lp=32
+probe=router.parentSideDeliversQuote status=PASS got=996205794639082262 want=996205794639082262
+probe=stake.slippageErrorSelector status=PASS must be SlippageExceeded
+pair_smallestBurnableLp=32
+probe=factory.tokenOrder status=PASS token0 is the lower address
+router_quote_model997=99690060900928
+probe=stake.secondStakePricesOffWithdrawable status=PASS got=31622776601683793319 want=31622776601683793319
+probe=pair.secondMintIsProportional status=PASS got=6324555320336758663 want=6324555320336758663
+probe=stake.slippageRollbackKeepsPool status=PASS 
+probe=factory.duplicateReverts status=PASS a second create must fail
+pair_firstMint=31622776601683792319
+probe=stake.slippageRollbackKeepsBalances status=PASS 
+router_quote_model9975_per10000=99740050929919
+factory_allPairsLength=2
+note=router.feeModel matched=30bps uniswapV2WouldGive=99690060900928
+probe=stake.settlementBurnsTheToken status=PASS burned=459197272939364049
+probe=stake.settlementSwapsParentSide status=PASS parent=173947079932574
+probe=stake.burnLeavesTheSupply status=PASS got=459197272939364049 want=459197272939364049
+stake_withdrawableAtRest=63245553203367585638
+probe=stake.growthLeavesWithdrawable status=PASS 
+stake_feeReclassified=12375340724184224
+stake_feeRemainingAfterSettlement=6052022937919884
+probe=stake.oneSettlementPerRound status=PASS got=459197272939364049 want=459197272939364049
+probe=stake.withdrawReturnsBothSides status=PASS 
+probe=stake.withdrawTokenShare status=PASS got=1149660367815446547354 want=1149660367815446547354
+probe=stake.withdrawParentShare status=PASS got=869822364879431267 want=869822364879431267
+probe=stake.positionIsCleared status=PASS got=0 want=0
+stake_withdraw_tokenOut=1149660367815446547354
+stake_withdraw_parentOut=869822364879431267
+# profile=anvil block=1
+probe=pair.tokenOrder status=PASS token0 is the lower address
+probe=router.quoteMatchesKnownFeeModel status=PASS quote=99690060900928
+probe=pair.burnBelowGuardReverts status=PASS lp=31
+probe=router.amountOutMinTooHighReverts status=PASS an unattainable minimum must fail
+router_quote=99690060900928
+probe=pair.firstMintLocksMinimum status=PASS got=31622776601683792319 want=31622776601683792319
+probe=wrapper.deposit status=PASS got=1000000000000000000 want=1000000000000000000
+pair_feeToConfigured=0
+router_quote_model998=99790040953912
+probe=pair.supplyCarriesLock status=PASS got=31622776601683793319 want=31622776601683793319
+probe=wrapper.supply status=PASS got=12000000000000000000 want=12000000000000000000
+router_quote_model997=99690060900928
+probe=pair.lockIsUnownable status=PASS got=1000 want=1000
+router_quote_model9975_per10000=99740050929919
+probe=router.expiredDeadlineReverts status=PASS a stale deadline must fail
+note=router.feeModel matched=30bps uniswapV2WouldGive=99690060900928
+probe=router.failedSwapKeepsReserves status=PASS a failed swap changes nothing
+probe=stake.firstStakeExcludesTheLock status=PASS got=31622776601683792319 want=31622776601683792319
+pair_treasuryMint=0
+probe=stake.firstStakeTakesTheWholeBasis status=PASS got=31622776601683792319 want=31622776601683792319
+pair_treasuryMint_denominator3=10540925533894597773
+probe=router.unregisteredPairReverts status=PASS an unknown pool must fail
+probe=pair.failedBurnKeepsLp status=PASS got=31 want=31
+probe=pair.secondMintIsProportional status=PASS got=6324555320336758663 want=6324555320336758663
+probe=stake.slippageGuardRejects status=PASS a deposit off the pool ratio must fail at zero slippage
+probe=wrapper.decimals status=PASS must be 18
+probe=factory.getPair status=PASS symmetric and zero when unknown
+probe=stake.noFeeBeforeAnyTrade status=PASS fee=0
+probe=pair.burnAtGuardPaysOut status=PASS lp=32
+probe=stake.slippageErrorSelector status=PASS must be SlippageExceeded
+probe=wrapper.approveReturnsBool status=PASS Stake requires the boolean
+pair_smallestBurnableLp=32
+pair_firstMint=31622776601683792319
+probe=factory.createPair status=PASS must return the pair
+probe=wrapper.withdraw status=PASS got=6000000000000000000 want=6000000000000000000
+probe=pair.lpApproveReturnsBool status=PASS Stake requires the boolean
+probe=factory.registry status=PASS reverse lookup must find it
+wrapper_deposit=1000000000000000000
+pair_treasuryMint_denominator5=6324555320336758663
+probe=stake.slippageRollbackKeepsPool status=PASS 
+probe=factory.allPairsLength status=PASS got=2 want=2
+probe=stake.withdrawableStartsAtTheBasis status=PASS 
+probe=pair.lpSelfTransferReturnsBool status=PASS Stake transfers its LP into the pair
+probe=factory.tokenOrder status=PASS token0 is the lower address
+probe=pair.noTreasuryMint status=PASS nothing may be minted to a zero treasury
+probe=router.swapDeliversTheQuote status=PASS got=99690060900928 want=99690060900928
+probe=stake.slippageRollbackKeepsBalances status=PASS 
+pair_lpDecimals=18
+probe=factory.duplicateReverts status=PASS a second create must fail
+probe=router.swapMovesTheBalance status=PASS got=99690060900928 want=99690060900928
+probe=stake.secondStakeLandsOnTheMember status=PASS got=31622776601683793319 want=31622776601683793319
+factory_allPairsLength=2
+probe=router.deadlineEqualToNowAccepted status=PASS Stake passes block.timestamp
+probe=stake.secondStakePricesOffWithdrawable status=PASS got=31622776601683793319 want=31622776601683793319
+router_swap_delivered=99690060900928
+probe=router.parentSideDeliversQuote status=PASS got=996205794639082262 want=996205794639082262
+probe=stake.settlementBurnsTheToken status=PASS burned=459197272939364049
+probe=stake.settlementSwapsParentSide status=PASS parent=173947079932574
+probe=stake.burnLeavesTheSupply status=PASS got=459197272939364049 want=459197272939364049
+stake_withdrawableAtRest=63245553203367585638
+probe=stake.growthLeavesWithdrawable status=PASS 
+stake_feeReclassified=12375340724184224
+stake_feeRemainingAfterSettlement=6052022937919884
+probe=stake.oneSettlementPerRound status=PASS got=459197272939364049 want=459197272939364049
+probe=stake.withdrawReturnsBothSides status=PASS 
+probe=stake.withdrawTokenShare status=PASS got=1149660367815446547354 want=1149660367815446547354
+probe=stake.withdrawParentShare status=PASS got=869822364879431267 want=869822364879431267
+probe=stake.positionIsCleared status=PASS got=0 want=0
+stake_withdraw_tokenOut=1149660367815446547354
+stake_withdraw_parentOut=869822364879431267
+# profile=anvil block=1
+probe=pair.tokenOrder status=PASS token0 is the lower address
+probe=factory.getPair status=PASS symmetric and zero when unknown
+probe=router.quoteMatchesKnownFeeModel status=PASS quote=99690060900928
+pair_feeToConfigured=0
+probe=pair.lpApproveReturnsBool status=PASS Stake requires the boolean
+probe=pair.firstMintLocksMinimum status=PASS got=31622776601683792319 want=31622776601683792319
+probe=pair.lpSelfTransferReturnsBool status=PASS Stake transfers its LP into the pair
+probe=wrapper.deposit status=PASS got=1000000000000000000 want=1000000000000000000
+probe=pair.supplyCarriesLock status=PASS got=31622776601683793319 want=31622776601683793319
+pair_lpDecimals=18
+probe=wrapper.supply status=PASS got=12000000000000000000 want=12000000000000000000
+probe=wrapper.decimals status=PASS must be 18
+probe=pair.burnBelowGuardReverts status=PASS lp=31
+probe=factory.createPair status=PASS must return the pair
+probe=wrapper.approveReturnsBool status=PASS Stake requires the boolean
+probe=stake.firstStakeExcludesTheLock status=PASS got=31622776601683792319 want=31622776601683792319
+probe=pair.failedBurnKeepsLp status=PASS got=31 want=31
+probe=router.amountOutMinTooHighReverts status=PASS an unattainable minimum must fail
+router_quote=99690060900928
+probe=pair.lockIsUnownable status=PASS got=1000 want=1000
+probe=stake.firstStakeTakesTheWholeBasis status=PASS got=31622776601683792319 want=31622776601683792319
+probe=factory.registry status=PASS reverse lookup must find it
+router_quote_model998=99790040953912
+probe=wrapper.withdraw status=PASS got=6000000000000000000 want=6000000000000000000
+probe=pair.secondMintIsProportional status=PASS got=6324555320336758663 want=6324555320336758663
+probe=pair.burnAtGuardPaysOut status=PASS lp=32
+wrapper_deposit=1000000000000000000
+pair_treasuryMint=0
+probe=factory.allPairsLength status=PASS got=2 want=2
+router_quote_model997=99690060900928
+pair_smallestBurnableLp=32
+probe=router.swapDeliversTheQuote status=PASS got=99690060900928 want=99690060900928
+probe=factory.tokenOrder status=PASS token0 is the lower address
+router_quote_model9975_per10000=99740050929919
+pair_firstMint=31622776601683792319
+probe=router.swapMovesTheBalance status=PASS got=99690060900928 want=99690060900928
+pair_treasuryMint_denominator3=10540925533894597773
+probe=router.expiredDeadlineReverts status=PASS a stale deadline must fail
+probe=stake.noFeeBeforeAnyTrade status=PASS fee=0
+note=router.feeModel matched=30bps uniswapV2WouldGive=99690060900928
+probe=factory.duplicateReverts status=PASS a second create must fail
+probe=router.deadlineEqualToNowAccepted status=PASS Stake passes block.timestamp
+pair_treasuryMint_denominator5=6324555320336758663
+probe=router.failedSwapKeepsReserves status=PASS a failed swap changes nothing
+probe=stake.withdrawableStartsAtTheBasis status=PASS 
+probe=stake.slippageGuardRejects status=PASS a deposit off the pool ratio must fail at zero slippage
+router_swap_delivered=99690060900928
+factory_allPairsLength=2
+probe=pair.noTreasuryMint status=PASS nothing may be minted to a zero treasury
+probe=router.unregisteredPairReverts status=PASS an unknown pool must fail
+probe=stake.slippageErrorSelector status=PASS must be SlippageExceeded
+probe=router.parentSideDeliversQuote status=PASS got=996205794639082262 want=996205794639082262
+probe=stake.slippageRollbackKeepsPool status=PASS 
+probe=stake.secondStakeLandsOnTheMember status=PASS got=31622776601683793319 want=31622776601683793319
+probe=stake.slippageRollbackKeepsBalances status=PASS 
+probe=stake.secondStakePricesOffWithdrawable status=PASS got=31622776601683793319 want=31622776601683793319
+probe=stake.settlementBurnsTheToken status=PASS burned=459197272939364049
+probe=stake.settlementSwapsParentSide status=PASS parent=173947079932574
+probe=stake.burnLeavesTheSupply status=PASS got=459197272939364049 want=459197272939364049
+stake_withdrawableAtRest=63245553203367585638
+probe=stake.growthLeavesWithdrawable status=PASS 
+stake_feeReclassified=12375340724184224
+stake_feeRemainingAfterSettlement=6052022937919884
+probe=stake.oneSettlementPerRound status=PASS got=459197272939364049 want=459197272939364049
+probe=stake.withdrawReturnsBothSides status=PASS 
+probe=stake.withdrawMatchesStakeQuote_token status=PASS got=1149660367815446547354 want=1149660367815446547354
+probe=stake.withdrawMatchesStakeQuote_parent status=PASS got=869822364879431267 want=869822364879431267
+note=stake.withdrawTokenShareFormulaGap 0
+note=stake.withdrawParentShareFormulaGap 0
+stake_withdraw_expectedToken=1149660367815446547354
+stake_withdraw_expectedParent=869822364879431267
+probe=stake.positionIsCleared status=PASS got=0 want=0
+stake_withdraw_tokenOut=1149660367815446547354
+stake_withdraw_parentOut=869822364879431267
+# profile=anvil block=1
+probe=factory.getPair status=PASS symmetric and zero when unknown
+probe=pair.lpApproveReturnsBool status=PASS Stake requires the boolean
+probe=pair.tokenOrder status=PASS token0 is the lower address
+probe=router.swapDeliversTheQuote status=PASS got=99690060900928 want=99690060900928
+probe=router.swapMovesTheBalance status=PASS got=99690060900928 want=99690060900928
+probe=stake.firstStakeExcludesTheLock status=PASS got=31622776601683792319 want=31622776601683792319
+probe=router.deadlineEqualToNowAccepted status=PASS Stake passes block.timestamp
+probe=pair.lpSelfTransferReturnsBool status=PASS Stake transfers its LP into the pair
+router_swap_delivered=99690060900928
+pair_lpDecimals=18
+probe=wrapper.deposit status=PASS got=1000000000000000000 want=1000000000000000000
+probe=wrapper.supply status=PASS got=12000000000000000000 want=12000000000000000000
+probe=stake.slippageGuardRejects status=PASS a deposit off the pool ratio must fail at zero slippage
+probe=router.quoteMatchesKnownFeeModel status=PASS quote=99690060900928
+probe=wrapper.decimals status=PASS must be 18
+probe=stake.slippageErrorSelector status=PASS must be SlippageExceeded
+router_quote=99690060900928
+probe=wrapper.approveReturnsBool status=PASS Stake requires the boolean
+probe=stake.slippageRollbackKeepsPool status=PASS 
+probe=router.amountOutMinTooHighReverts status=PASS an unattainable minimum must fail
+probe=pair.burnBelowGuardReverts status=PASS lp=31
+probe=stake.slippageRollbackKeepsBalances status=PASS 
+probe=stake.firstStakeTakesTheWholeBasis status=PASS got=31622776601683792319 want=31622776601683792319
+probe=pair.failedBurnKeepsLp status=PASS got=31 want=31
+probe=factory.createPair status=PASS must return the pair
+probe=stake.noFeeBeforeAnyTrade status=PASS fee=0
+router_quote_model998=99790040953912
+probe=router.parentSideDeliversQuote status=PASS got=996205794639082262 want=996205794639082262
+probe=stake.withdrawableStartsAtTheBasis status=PASS 
+probe=pair.burnAtGuardPaysOut status=PASS lp=32
+probe=wrapper.withdraw status=PASS got=6000000000000000000 want=6000000000000000000
+router_quote_model997=99690060900928
+probe=factory.registry status=PASS reverse lookup must find it
+pair_feeToConfigured=0
+wrapper_deposit=1000000000000000000
+pair_smallestBurnableLp=32
+router_quote_model9975_per10000=99740050929919
+probe=pair.firstMintLocksMinimum status=PASS got=31622776601683792319 want=31622776601683792319
+probe=factory.allPairsLength status=PASS got=2 want=2
+probe=pair.supplyCarriesLock status=PASS got=31622776601683793319 want=31622776601683793319
+probe=router.expiredDeadlineReverts status=PASS a stale deadline must fail
+note=router.feeModel matched=30bps uniswapV2WouldGive=99690060900928
+probe=stake.secondStakeLandsOnTheMember status=PASS got=31622776601683793319 want=31622776601683793319
+probe=factory.tokenOrder status=PASS token0 is the lower address
+pair_treasuryMint=0
+probe=pair.lockIsUnownable status=PASS got=1000 want=1000
+probe=router.failedSwapKeepsReserves status=PASS a failed swap changes nothing
+probe=stake.secondStakePricesOffWithdrawable status=PASS got=31622776601683793319 want=31622776601683793319
+probe=factory.duplicateReverts status=PASS a second create must fail
+pair_treasuryMint_denominator3=10540925533894597773
+probe=router.unregisteredPairReverts status=PASS an unknown pool must fail
+pair_treasuryMint_denominator5=6324555320336758663
+probe=pair.secondMintIsProportional status=PASS got=6324555320336758663 want=6324555320336758663
+probe=pair.noTreasuryMint status=PASS nothing may be minted to a zero treasury
+factory_allPairsLength=2
+pair_firstMint=31622776601683792319
+probe=stake.settlementBurnsTheToken status=PASS burned=459197272939364049
+probe=stake.settlementSwapsParentSide status=PASS parent=173947079932574
+probe=stake.burnLeavesTheSupply status=PASS got=459197272939364049 want=459197272939364049
+stake_withdrawableAtRest=63245553203367585638
+probe=stake.growthLeavesWithdrawable status=PASS 
+stake_feeReclassified=12375340724184224
+stake_feeRemainingAfterSettlement=6052022937919884
+probe=stake.oneSettlementPerRound status=PASS got=459197272939364049 want=459197272939364049
+stake_withdraw_formulaToken=1149660367815446547354
+stake_withdraw_formulaParent=869822364879431267
+probe=stake.withdrawReturnsBothSides status=PASS 
+stake_withdraw_tokenGap=0
+stake_withdraw_parentGap=0
+probe=stake.withdrawMatchesStakeQuote_token status=PASS 
+probe=stake.withdrawMatchesStakeQuote_parent status=PASS 
+probe=stake.positionIsCleared status=PASS got=0 want=0
+stake_withdraw_tokenOut=1149660367815446547354
+stake_withdraw_parentOut=869822364879431267
+# profile=anvil block=1
+probe=factory.getPair status=PASS symmetric and zero when unknown
+probe=stake.firstStakeExcludesTheLock status=PASS got=31622776601683792319 want=31622776601683792319
+probe=pair.tokenOrder status=PASS token0 is the lower address
+probe=router.amountOutMinTooHighReverts status=PASS an unattainable minimum must fail
+probe=wrapper.deposit status=PASS got=1000000000000000000 want=1000000000000000000
+probe=pair.firstMintLocksMinimum status=PASS got=31622776601683792319 want=31622776601683792319
+probe=pair.lpApproveReturnsBool status=PASS Stake requires the boolean
+probe=pair.supplyCarriesLock status=PASS got=31622776601683793319 want=31622776601683793319
+probe=pair.lpSelfTransferReturnsBool status=PASS Stake transfers its LP into the pair
+probe=pair.lockIsUnownable status=PASS got=1000 want=1000
+pair_lpDecimals=18
+probe=router.quoteMatchesKnownFeeModel status=PASS quote=99690060900928
+pair_feeToConfigured=0
+router_quote=99690060900928
+router_quote_model998=99790040953912
+router_quote_model997=99690060900928
+probe=pair.burnBelowGuardReverts status=PASS lp=31
+router_quote_model9975_per10000=99740050929919
+probe=pair.secondMintIsProportional status=PASS got=6324555320336758663 want=6324555320336758663
+probe=pair.failedBurnKeepsLp status=PASS got=31 want=31
+note=router.feeModel matched=30bps uniswapV2WouldGive=99690060900928
+pair_firstMint=31622776601683792319
+probe=pair.burnAtGuardPaysOut status=PASS lp=32
+probe=stake.slippageGuardRejects status=PASS a deposit off the pool ratio must fail at zero slippage
+probe=stake.firstStakeTakesTheWholeBasis status=PASS got=31622776601683792319 want=31622776601683792319
+probe=stake.noFeeBeforeAnyTrade status=PASS fee=0
+probe=stake.withdrawableStartsAtTheBasis status=PASS 
+probe=stake.slippageErrorSelector status=PASS must be SlippageExceeded
+probe=stake.slippageRollbackKeepsPool status=PASS 
+pair_treasuryMint=0
+probe=stake.slippageRollbackKeepsBalances status=PASS 
+pair_treasuryMint_denominator3=10540925533894597773
+pair_treasuryMint_denominator5=6324555320336758663
+probe=stake.secondStakeLandsOnTheMember status=PASS got=31622776601683793319 want=31622776601683793319
+probe=router.swapDeliversTheQuote status=PASS got=99690060900928 want=99690060900928
+probe=router.swapMovesTheBalance status=PASS got=99690060900928 want=99690060900928
+probe=router.expiredDeadlineReverts status=PASS a stale deadline must fail
+probe=stake.secondStakePricesOffWithdrawable status=PASS got=31622776601683793319 want=31622776601683793319
+probe=factory.createPair status=PASS must return the pair
+probe=router.failedSwapKeepsReserves status=PASS a failed swap changes nothing
+probe=factory.registry status=PASS reverse lookup must find it
+probe=router.deadlineEqualToNowAccepted status=PASS Stake passes block.timestamp
+probe=factory.allPairsLength status=PASS got=2 want=2
+router_swap_delivered=99690060900928
+probe=wrapper.supply status=PASS got=12000000000000000000 want=12000000000000000000
+probe=factory.tokenOrder status=PASS token0 is the lower address
+probe=factory.duplicateReverts status=PASS a second create must fail
+factory_allPairsLength=2
+probe=stake.settlementBurnsTheToken status=FAIL burned=0
+probe=router.unregisteredPairReverts status=PASS an unknown pool must fail
+probe=wrapper.decimals status=PASS must be 18
+probe=pair.noTreasuryMint status=PASS nothing may be minted to a zero treasury
+probe=router.parentSideDeliversQuote status=PASS got=996205794639082262 want=996205794639082262
+probe=wrapper.approveReturnsBool status=PASS Stake requires the boolean
+pair_smallestBurnableLp=32
+probe=wrapper.withdraw status=PASS got=6000000000000000000 want=6000000000000000000
+wrapper_deposit=1000000000000000000
+# profile=anvil block=1
+probe=wrapper.deposit status=PASS got=1000000000000000000 want=1000000000000000000
+probe=wrapper.supply status=PASS got=12000000000000000000 want=12000000000000000000
+probe=pair.tokenOrder status=PASS token0 is the lower address
+probe=wrapper.decimals status=PASS must be 18
+probe=pair.lpApproveReturnsBool status=PASS Stake requires the boolean
+probe=router.amountOutMinTooHighReverts status=PASS an unattainable minimum must fail
+probe=pair.firstMintLocksMinimum status=PASS got=31622776601683792319 want=31622776601683792319
+probe=wrapper.approveReturnsBool status=PASS Stake requires the boolean
+probe=pair.lpSelfTransferReturnsBool status=PASS Stake transfers its LP into the pair
+probe=pair.supplyCarriesLock status=PASS got=31622776601683793319 want=31622776601683793319
+probe=pair.burnBelowGuardReverts status=PASS lp=31
+probe=wrapper.withdraw status=PASS got=6000000000000000000 want=6000000000000000000
+probe=router.quoteMatchesKnownFeeModel status=PASS quote=99690060900928
+pair_lpDecimals=18
+probe=router.expiredDeadlineReverts status=PASS a stale deadline must fail
+probe=pair.lockIsUnownable status=PASS got=1000 want=1000
+probe=pair.failedBurnKeepsLp status=PASS got=31 want=31
+probe=router.failedSwapKeepsReserves status=PASS a failed swap changes nothing
+wrapper_deposit=1000000000000000000
+router_quote=99690060900928
+pair_feeToConfigured=0
+probe=pair.secondMintIsProportional status=PASS got=6324555320336758663 want=6324555320336758663
+probe=pair.burnAtGuardPaysOut status=PASS lp=32
+probe=router.unregisteredPairReverts status=PASS an unknown pool must fail
+router_quote_model998=99790040953912
+probe=factory.getPair status=PASS symmetric and zero when unknown
+pair_firstMint=31622776601683792319
+pair_smallestBurnableLp=32
+probe=router.swapDeliversTheQuote status=PASS got=99690060900928 want=99690060900928
+router_quote_model997=99690060900928
+pair_treasuryMint=0
+probe=factory.createPair status=PASS must return the pair
+probe=stake.firstStakeExcludesTheLock status=PASS got=31622776601683792319 want=31622776601683792319
+probe=router.swapMovesTheBalance status=PASS got=99690060900928 want=99690060900928
+router_quote_model9975_per10000=99740050929919
+pair_treasuryMint_denominator3=10540925533894597773
+probe=stake.slippageGuardRejects status=PASS a deposit off the pool ratio must fail at zero slippage
+probe=stake.firstStakeTakesTheWholeBasis status=PASS got=31622776601683792319 want=31622776601683792319
+probe=router.deadlineEqualToNowAccepted status=PASS Stake passes block.timestamp
+note=router.feeModel matched=30bps uniswapV2WouldGive=99690060900928
+probe=factory.registry status=PASS reverse lookup must find it
+pair_treasuryMint_denominator5=6324555320336758663
+probe=stake.slippageErrorSelector status=PASS must be SlippageExceeded
+probe=stake.noFeeBeforeAnyTrade status=PASS fee=0
+router_swap_delivered=99690060900928
+probe=factory.allPairsLength status=PASS got=2 want=2
+probe=pair.noTreasuryMint status=PASS nothing may be minted to a zero treasury
+probe=stake.withdrawableStartsAtTheBasis status=PASS 
+probe=stake.slippageRollbackKeepsPool status=PASS 
+probe=router.parentSideDeliversQuote status=PASS got=996205794639082262 want=996205794639082262
+probe=factory.tokenOrder status=PASS token0 is the lower address
+probe=stake.slippageRollbackKeepsBalances status=PASS 
+probe=stake.secondStakeLandsOnTheMember status=PASS got=31622776601683793319 want=31622776601683793319
+probe=factory.duplicateReverts status=PASS a second create must fail
+probe=stake.secondStakePricesOffWithdrawable status=PASS got=31622776601683793319 want=31622776601683793319
+factory_allPairsLength=2
+probe=stake.settlementBurnsTheToken status=PASS burned=459287137786140947
+probe=stake.settlementSwapsParentSide status=PASS parent=173981123048149
+probe=stake.burnLeavesTheSupply status=PASS got=459287137786140947 want=459287137786140947
+stake_withdrawableAtRest=63245553203367585638
+probe=stake.growthLeavesWithdrawable status=PASS 
+stake_feeReclassified=12375340724184224
+stake_feeRemainingAfterSettlement=6050785403847466
+probe=stake.oneSettlementPerRound status=PASS got=459287137786140947 want=459287137786140947
+stake_withdraw_formulaToken=1149660345385128003534
+stake_withdraw_formulaParent=869822381901062247
+probe=stake.withdrawReturnsBothSides status=PASS 
+stake_withdraw_tokenGap=0
+stake_withdraw_parentGap=0
+probe=stake.withdrawMatchesStakeQuote_token status=PASS 
+probe=stake.withdrawMatchesStakeQuote_parent status=PASS 
+probe=stake.positionIsCleared status=PASS got=0 want=0
+stake_withdraw_tokenOut=1149660345385128003534
+stake_withdraw_parentOut=869822381901062247
+# profile=anvil block=1
+probe=wrapper.deposit status=PASS got=1000000000000000000 want=1000000000000000000
+probe=pair.lpApproveReturnsBool status=PASS Stake requires the boolean
+probe=router.quoteMatchesKnownFeeModel status=PASS quote=99690060900928
+probe=router.amountOutMinTooHighReverts status=PASS an unattainable minimum must fail
+probe=wrapper.supply status=PASS got=12000000000000000000 want=12000000000000000000
+probe=pair.lpSelfTransferReturnsBool status=PASS Stake transfers its LP into the pair
+router_quote=99690060900928
+probe=wrapper.decimals status=PASS must be 18
+router_quote_model998=99790040953912
+pair_lpDecimals=18
+probe=router.expiredDeadlineReverts status=PASS a stale deadline must fail
+probe=pair.tokenOrder status=PASS token0 is the lower address
+probe=router.swapDeliversTheQuote status=PASS got=99690060900928 want=99690060900928
+probe=stake.firstStakeExcludesTheLock status=PASS got=31622776601683792319 want=31622776601683792319
+probe=wrapper.approveReturnsBool status=PASS Stake requires the boolean
+router_quote_model997=99690060900928
+probe=router.failedSwapKeepsReserves status=PASS a failed swap changes nothing
+probe=router.swapMovesTheBalance status=PASS got=99690060900928 want=99690060900928
+probe=stake.firstStakeTakesTheWholeBasis status=PASS got=31622776601683792319 want=31622776601683792319
+probe=wrapper.withdraw status=PASS got=6000000000000000000 want=6000000000000000000
+probe=stake.slippageGuardRejects status=PASS a deposit off the pool ratio must fail at zero slippage
+probe=router.unregisteredPairReverts status=PASS an unknown pool must fail
+wrapper_deposit=1000000000000000000
+probe=pair.firstMintLocksMinimum status=PASS got=31622776601683792319 want=31622776601683792319
+probe=router.deadlineEqualToNowAccepted status=PASS Stake passes block.timestamp
+probe=stake.noFeeBeforeAnyTrade status=PASS fee=0
+router_quote_model9975_per10000=99740050929919
+probe=stake.slippageErrorSelector status=PASS must be SlippageExceeded
+probe=pair.supplyCarriesLock status=PASS got=31622776601683793319 want=31622776601683793319
+probe=factory.getPair status=PASS symmetric and zero when unknown
+probe=pair.burnBelowGuardReverts status=PASS lp=31
+router_swap_delivered=99690060900928
+probe=stake.withdrawableStartsAtTheBasis status=PASS 
+pair_feeToConfigured=0
+probe=pair.lockIsUnownable status=PASS got=1000 want=1000
+note=router.feeModel matched=30bps uniswapV2WouldGive=99690060900928
+probe=pair.failedBurnKeepsLp status=PASS got=31 want=31
+probe=stake.slippageRollbackKeepsPool status=PASS 
+probe=factory.createPair status=PASS must return the pair
+probe=router.parentSideDeliversQuote status=PASS got=996205794639082262 want=996205794639082262
+probe=stake.slippageRollbackKeepsBalances status=PASS 
+probe=pair.secondMintIsProportional status=PASS got=6324555320336758663 want=6324555320336758663
+probe=pair.burnAtGuardPaysOut status=PASS lp=32
+probe=factory.registry status=PASS reverse lookup must find it
+probe=stake.secondStakeLandsOnTheMember status=PASS got=31622776601683793319 want=31622776601683793319
+pair_treasuryMint=0
+pair_smallestBurnableLp=32
+pair_firstMint=31622776601683792319
+probe=stake.secondStakePricesOffWithdrawable status=PASS got=31622776601683793319 want=31622776601683793319
+pair_treasuryMint_denominator3=10540925533894597773
+pair_treasuryMint_denominator5=6324555320336758663
+probe=factory.allPairsLength status=PASS got=2 want=2
+probe=stake.settlementBurnsTheToken status=PASS burned=459287137786140947
+probe=pair.noTreasuryMint status=PASS nothing may be minted to a zero treasury
+probe=factory.tokenOrder status=PASS token0 is the lower address
+probe=stake.settlementSwapsParentSide status=PASS parent=173981123048149
+probe=factory.duplicateReverts status=PASS a second create must fail
+probe=stake.burnLeavesTheSupply status=PASS got=459287137786140947 want=459287137786140947
+factory_allPairsLength=2
+stake_withdrawableAtRest=63245553203367585638
+probe=stake.growthLeavesWithdrawable status=PASS 
+stake_feeReclassified=12375340724184224
+stake_feeRemainingAfterSettlement=6050785403847466
+probe=stake.oneSettlementPerRound status=PASS got=459287137786140947 want=459287137786140947
+stake_withdraw_formulaToken=1149660345385128003534
+stake_withdraw_formulaParent=869822381901062247
+probe=stake.withdrawReturnsBothSides status=PASS 
+stake_withdraw_tokenGap=0
+stake_withdraw_parentGap=0
+probe=stake.withdrawMatchesStakeQuote_token status=PASS 
+probe=stake.withdrawMatchesStakeQuote_parent status=PASS 
+probe=stake.positionIsCleared status=PASS got=0 want=0
+stake_withdraw_tokenOut=1149660345385128003534
+stake_withdraw_parentOut=869822381901062247
+# profile=anvil block=1
+probe=wrapper.deposit status=PASS got=1000000000000000000 want=1000000000000000000
+probe=wrapper.supply status=PASS got=12000000000000000000 want=12000000000000000000
+probe=pair.lpApproveReturnsBool status=PASS Stake requires the boolean
+probe=pair.lpSelfTransferReturnsBool status=PASS Stake transfers its LP into the pair
+probe=wrapper.decimals status=PASS must be 18
+probe=pair.tokenOrder status=PASS token0 is the lower address
+pair_lpDecimals=18
+probe=wrapper.approveReturnsBool status=PASS Stake requires the boolean
+probe=factory.getPair status=PASS symmetric and zero when unknown
+probe=wrapper.withdraw status=PASS got=6000000000000000000 want=6000000000000000000
+probe=pair.firstMintLocksMinimum status=PASS got=31622776601683792319 want=31622776601683792319
+wrapper_deposit=1000000000000000000
+probe=pair.supplyCarriesLock status=PASS got=31622776601683793319 want=31622776601683793319
+probe=stake.firstStakeExcludesTheLock status=PASS got=31622776601683792319 want=31622776601683792319
+probe=router.quoteMatchesKnownFeeModel status=PASS quote=99690060900928
+probe=stake.firstStakeTakesTheWholeBasis status=PASS got=31622776601683792319 want=31622776601683792319
+probe=pair.lockIsUnownable status=PASS got=1000 want=1000
+probe=stake.noFeeBeforeAnyTrade status=PASS fee=0
+pair_feeToConfigured=0
+probe=stake.withdrawableStartsAtTheBasis status=PASS 
+probe=factory.createPair status=PASS must return the pair
+probe=pair.burnBelowGuardReverts status=PASS lp=31
+probe=pair.secondMintIsProportional status=PASS got=6324555320336758663 want=6324555320336758663
+probe=pair.failedBurnKeepsLp status=PASS got=31 want=31
+probe=stake.slippageGuardRejects status=PASS a deposit off the pool ratio must fail at zero slippage
+router_quote=99690060900928
+pair_firstMint=31622776601683792319
+probe=router.swapDeliversTheQuote status=PASS got=99690060900928 want=99690060900928
+router_quote_model998=99790040953912
+probe=router.amountOutMinTooHighReverts status=PASS an unattainable minimum must fail
+router_quote_model997=99690060900928
+probe=router.swapMovesTheBalance status=PASS got=99690060900928 want=99690060900928
+probe=pair.burnAtGuardPaysOut status=PASS lp=32
+router_quote_model9975_per10000=99740050929919
+probe=router.deadlineEqualToNowAccepted status=PASS Stake passes block.timestamp
+probe=stake.secondStakeLandsOnTheMember status=PASS got=31622776601683793319 want=31622776601683793319
+probe=router.expiredDeadlineReverts status=PASS a stale deadline must fail
+router_swap_delivered=99690060900928
+note=router.feeModel matched=30bps uniswapV2WouldGive=99690060900928
+pair_smallestBurnableLp=32
+probe=factory.registry status=PASS reverse lookup must find it
+probe=stake.slippageErrorSelector status=PASS must be SlippageExceeded
+pair_treasuryMint=0
+probe=router.failedSwapKeepsReserves status=PASS a failed swap changes nothing
+probe=factory.allPairsLength status=PASS got=2 want=2
+probe=stake.slippageRollbackKeepsPool status=PASS 
+probe=stake.secondStakePricesOffWithdrawable status=PASS got=31622776601683793319 want=31622776601683793319
+probe=router.parentSideDeliversQuote status=PASS got=996205794639082262 want=996205794639082262
+probe=stake.slippageRollbackKeepsBalances status=PASS 
+probe=router.unregisteredPairReverts status=PASS an unknown pool must fail
+pair_treasuryMint_denominator3=10540925533894597773
+probe=factory.tokenOrder status=PASS token0 is the lower address
+pair_treasuryMint_denominator5=6324555320336758663
+probe=factory.duplicateReverts status=PASS a second create must fail
+probe=pair.noTreasuryMint status=PASS nothing may be minted to a zero treasury
+probe=stake.settlementBurnsTheToken status=PASS burned=459287137786140947
+factory_allPairsLength=2
+probe=stake.settlementSwapsParentSide status=PASS parent=173981123048149
+probe=stake.burnLeavesTheSupply status=PASS got=459287137786140947 want=459287137786140947
+stake_withdrawableAtRest=63245553203367585638
+probe=stake.growthLeavesWithdrawable status=PASS 
+stake_feeReclassified=12375340724184224
+stake_feeRemainingAfterSettlement=6050785403847466
+probe=stake.oneSettlementPerRound status=PASS got=459287137786140947 want=459287137786140947
+stake_withdraw_formulaToken=1149660345385128003534
+stake_withdraw_formulaParent=869822381901062247
+probe=stake.withdrawReturnsBothSides status=PASS 
+stake_withdraw_tokenGap=0
+stake_withdraw_parentGap=0
+probe=stake.withdrawMatchesStakeQuote_token status=PASS 
+probe=stake.withdrawMatchesStakeQuote_parent status=PASS 
+probe=stake.positionIsCleared status=PASS got=0 want=0
+stake_withdraw_tokenOut=1149660345385128003534
+stake_withdraw_parentOut=869822381901062247
+# profile=anvil block=1
+probe=wrapper.deposit status=PASS got=1000000000000000000 want=1000000000000000000
+probe=wrapper.supply status=PASS got=12000000000000000000 want=12000000000000000000
+probe=wrapper.decimals status=PASS must be 18
+probe=router.amountOutMinTooHighReverts status=PASS an unattainable minimum must fail
+probe=router.expiredDeadlineReverts status=PASS a stale deadline must fail
+probe=router.failedSwapKeepsReserves status=PASS a failed swap changes nothing
+probe=router.unregisteredPairReverts status=PASS an unknown pool must fail
+probe=stake.firstStakeExcludesTheLock status=PASS got=31622776601683792319 want=31622776601683792319
+probe=wrapper.approveReturnsBool status=PASS Stake requires the boolean
+probe=pair.lpApproveReturnsBool status=PASS Stake requires the boolean
+probe=stake.firstStakeTakesTheWholeBasis status=PASS got=31622776601683792319 want=31622776601683792319
+probe=pair.lpSelfTransferReturnsBool status=PASS Stake transfers its LP into the pair
+probe=stake.noFeeBeforeAnyTrade status=PASS fee=0
+probe=pair.tokenOrder status=PASS token0 is the lower address
+pair_lpDecimals=18
+probe=pair.burnBelowGuardReverts status=PASS lp=31
+probe=stake.withdrawableStartsAtTheBasis status=PASS 
+probe=wrapper.withdraw status=PASS got=6000000000000000000 want=6000000000000000000
+probe=pair.failedBurnKeepsLp status=PASS got=31 want=31
+probe=router.quoteMatchesKnownFeeModel status=PASS quote=99690060900928
+probe=stake.slippageGuardRejects status=PASS a deposit off the pool ratio must fail at zero slippage
+probe=pair.burnAtGuardPaysOut status=PASS lp=32
+probe=pair.firstMintLocksMinimum status=PASS got=31622776601683792319 want=31622776601683792319
+router_quote=99690060900928
+probe=pair.supplyCarriesLock status=PASS got=31622776601683793319 want=31622776601683793319
+probe=stake.secondStakeLandsOnTheMember status=PASS got=31622776601683793319 want=31622776601683793319
+router_quote_model998=99790040953912
+router_quote_model997=99690060900928
+probe=router.swapDeliversTheQuote status=PASS got=99690060900928 want=99690060900928
+probe=stake.secondStakePricesOffWithdrawable status=PASS got=31622776601683793319 want=31622776601683793319
+probe=router.swapMovesTheBalance status=PASS got=99690060900928 want=99690060900928
+probe=router.deadlineEqualToNowAccepted status=PASS Stake passes block.timestamp
+router_swap_delivered=99690060900928
+wrapper_deposit=1000000000000000000
+probe=pair.lockIsUnownable status=PASS got=1000 want=1000
+probe=stake.slippageErrorSelector status=PASS must be SlippageExceeded
+probe=stake.slippageRollbackKeepsPool status=PASS 
+probe=factory.getPair status=PASS symmetric and zero when unknown
+probe=stake.slippageRollbackKeepsBalances status=PASS 
+router_quote_model9975_per10000=99740050929919
+pair_smallestBurnableLp=32
+probe=router.parentSideDeliversQuote status=PASS got=996205794639082262 want=996205794639082262
+pair_feeToConfigured=0
+probe=factory.createPair status=PASS must return the pair
+probe=factory.registry status=PASS reverse lookup must find it
+probe=stake.settlementBurnsTheToken status=PASS burned=459287137786140947
+probe=factory.allPairsLength status=PASS got=2 want=2
+note=router.feeModel matched=30bps uniswapV2WouldGive=99690060900928
+probe=stake.settlementSwapsParentSide status=PASS parent=173981123048149
+probe=pair.secondMintIsProportional status=PASS got=6324555320336758663 want=6324555320336758663
+probe=factory.tokenOrder status=PASS token0 is the lower address
+pair_treasuryMint=0
+pair_firstMint=31622776601683792319
+probe=stake.burnLeavesTheSupply status=PASS got=459287137786140947 want=459287137786140947
+probe=factory.duplicateReverts status=PASS a second create must fail
+pair_treasuryMint_denominator3=10540925533894597773
+factory_allPairsLength=2
+stake_withdrawableAtRest=63245553203367585638
+pair_treasuryMint_denominator5=6324555320336758663
+probe=pair.noTreasuryMint status=PASS nothing may be minted to a zero treasury
+probe=stake.growthLeavesWithdrawable status=PASS 
+stake_feeReclassified=12375340724184224
+stake_feeRemainingAfterSettlement=6050785403847466
+probe=stake.oneSettlementPerRound status=PASS got=459287137786140947 want=459287137786140947
+stake_withdraw_formulaToken=1149660345385128003534
+stake_withdraw_formulaParent=869822381901062247
+probe=stake.withdrawReturnsBothSides status=PASS 
+stake_withdraw_tokenGap=0
+stake_withdraw_parentGap=0
+probe=stake.withdrawMatchesStakeQuote_token status=PASS 
+probe=stake.withdrawMatchesStakeQuote_parent status=PASS 
+probe=stake.positionIsCleared status=PASS got=0 want=0
+stake_withdraw_tokenOut=1149660345385128003534
+stake_withdraw_parentOut=869822381901062247
+# profile=anvil block=1
+probe=wrapper.deposit status=PASS got=1000000000000000000 want=1000000000000000000
+probe=wrapper.supply status=PASS got=12000000000000000000 want=12000000000000000000
+probe=wrapper.decimals status=PASS must be 18
+probe=pair.lpApproveReturnsBool status=PASS Stake requires the boolean
+probe=router.amountOutMinTooHighReverts status=PASS an unattainable minimum must fail
+probe=pair.lpSelfTransferReturnsBool status=PASS Stake transfers its LP into the pair
+probe=stake.firstStakeExcludesTheLock status=PASS got=31622776601683792319 want=31622776601683792319
+pair_lpDecimals=18
+probe=router.expiredDeadlineReverts status=PASS a stale deadline must fail
+probe=wrapper.approveReturnsBool status=PASS Stake requires the boolean
+probe=stake.firstStakeTakesTheWholeBasis status=PASS got=31622776601683792319 want=31622776601683792319
+probe=router.failedSwapKeepsReserves status=PASS a failed swap changes nothing
+probe=stake.noFeeBeforeAnyTrade status=PASS fee=0
+probe=stake.withdrawableStartsAtTheBasis status=PASS 
+probe=wrapper.withdraw status=PASS got=6000000000000000000 want=6000000000000000000
+probe=stake.slippageGuardRejects status=PASS a deposit off the pool ratio must fail at zero slippage
+wrapper_deposit=1000000000000000000
+probe=pair.tokenOrder status=PASS token0 is the lower address
+probe=router.quoteMatchesKnownFeeModel status=PASS quote=99690060900928
+probe=factory.getPair status=PASS symmetric and zero when unknown
+router_quote=99690060900928
+router_quote_model998=99790040953912
+probe=factory.createPair status=PASS must return the pair
+router_quote_model997=99690060900928
+probe=router.swapDeliversTheQuote status=PASS got=99690060900928 want=99690060900928
+router_quote_model9975_per10000=99740050929919
+probe=factory.registry status=PASS reverse lookup must find it
+probe=router.unregisteredPairReverts status=PASS an unknown pool must fail
+probe=pair.firstMintLocksMinimum status=PASS got=31622776601683792319 want=31622776601683792319
+probe=router.swapMovesTheBalance status=PASS got=99690060900928 want=99690060900928
+pair_feeToConfigured=0
+note=router.feeModel matched=30bps uniswapV2WouldGive=99690060900928
+probe=stake.secondStakeLandsOnTheMember status=PASS got=31622776601683793319 want=31622776601683793319
+probe=pair.supplyCarriesLock status=PASS got=31622776601683793319 want=31622776601683793319
+probe=factory.allPairsLength status=PASS got=2 want=2
+probe=stake.secondStakePricesOffWithdrawable status=PASS got=31622776601683793319 want=31622776601683793319
+probe=stake.slippageErrorSelector status=PASS must be SlippageExceeded
+probe=factory.tokenOrder status=PASS token0 is the lower address
+probe=pair.burnBelowGuardReverts status=PASS lp=31
+probe=stake.slippageRollbackKeepsPool status=PASS 
+probe=factory.duplicateReverts status=PASS a second create must fail
+probe=pair.failedBurnKeepsLp status=PASS got=31 want=31
+factory_allPairsLength=2
+probe=pair.lockIsUnownable status=PASS got=1000 want=1000
+pair_treasuryMint=0
+probe=stake.slippageRollbackKeepsBalances status=PASS 
+probe=pair.burnAtGuardPaysOut status=PASS lp=32
+probe=pair.secondMintIsProportional status=PASS got=6324555320336758663 want=6324555320336758663
+probe=router.deadlineEqualToNowAccepted status=PASS Stake passes block.timestamp
+pair_treasuryMint_denominator3=10540925533894597773
+pair_smallestBurnableLp=32
+pair_firstMint=31622776601683792319
+router_swap_delivered=99690060900928
+pair_treasuryMint_denominator5=6324555320336758663
+probe=pair.noTreasuryMint status=PASS nothing may be minted to a zero treasury
+probe=router.parentSideDeliversQuote status=PASS got=996205794639082262 want=996205794639082262
+probe=stake.settlementBurnsTheToken status=PASS burned=459287137786140947
+probe=stake.settlementSwapsParentSide status=PASS parent=173981123048149
+probe=stake.burnLeavesTheSupply status=PASS got=459287137786140947 want=459287137786140947
+stake_withdrawableAtRest=63245553203367585638
+probe=stake.growthLeavesWithdrawable status=PASS 
+stake_feeReclassified=12375340724184224
+stake_feeRemainingAfterSettlement=6050785403847466
+probe=stake.oneSettlementPerRound status=PASS got=459287137786140947 want=459287137786140947
+stake_withdraw_formulaToken=1149660345385128003534
+stake_withdraw_formulaParent=869822381901062247
+probe=stake.withdrawReturnsBothSides status=PASS 
+stake_withdraw_tokenGap=0
+stake_withdraw_parentGap=0
+probe=stake.withdrawMatchesStakeQuote_token status=PASS 
+probe=stake.withdrawMatchesStakeQuote_parent status=PASS 
+probe=stake.positionIsCleared status=PASS got=0 want=0
+stake_withdraw_tokenOut=1149660345385128003534
+stake_withdraw_parentOut=869822381901062247
