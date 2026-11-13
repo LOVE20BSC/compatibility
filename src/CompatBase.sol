@@ -70,9 +70,8 @@ abstract contract CompatBase {
     ///      RPC; a profile that *is* named but is missing its fork variables is still an error, because
     ///      silently falling back would report a local verdict under a network's name.
     function loadProfile() internal {
-        profileName = vm.envOr("COMPAT_PROFILE", string(""));
         bool unconfigured = !vm.envExists("COMPAT_PROFILE") && !vm.envExists("COMPAT_LOCAL");
-        if (unconfigured) profileName = "anvil";
+        profileName = unconfigured ? "anvil" : vm.envString("COMPAT_PROFILE");
         localReference = unconfigured || vm.envOr("COMPAT_LOCAL", false);
 
         if (localReference) {
