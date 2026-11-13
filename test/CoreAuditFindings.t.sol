@@ -11,7 +11,7 @@ import {Phase} from "@core/Phase.sol";
 import {MemberNFT} from "@core/MemberNFT.sol";
 import {LOVE20Token} from "@core/LOVE20Token.sol";
 import {Launch} from "@core/Launch.sol";
-import {Stake} from "@core/Stake.sol";
+import {Stake, DexConfig} from "@core/Stake.sol";
 import {Submit} from "@core/Submit.sol";
 import {Vote} from "@core/Vote.sol";
 import {Mint} from "@core/Mint.sol";
@@ -144,8 +144,7 @@ contract CoreAuditFindingsTest is CompatBase {
             address(s.member),
             predictedVote,
             address(s.launch),
-            address(s.router),
-            address(s.factory),
+            DexConfig({router: address(s.router), pairFactory: address(s.factory), swapFeeForLpRatio: 3000000000000000, swapFeeForProtocolRatio: 0}),
             1,
             100,
             1e15,

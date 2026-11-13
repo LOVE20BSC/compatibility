@@ -2,7 +2,7 @@
 pragma solidity =0.8.37;
 
 import {CompatBase, IERC20Like, IWBNB, IFactoryDiagnostics, IPairDiagnostics} from "../src/CompatBase.sol";
-import {Stake} from "@core/Stake.sol";
+import {Stake, DexConfig} from "@core/Stake.sol";
 import {IStake} from "@core/interfaces/IStake.sol";
 import {IUniswapV2Pair} from "@core/interfaces/UniswapV2/IUniswapV2Pair.sol";
 import {IUniswapV2Factory} from "@core/interfaces/UniswapV2/IUniswapV2Factory.sol";
@@ -72,8 +72,7 @@ contract CompatibilityProbe is CompatBase {
             address(members),
             address(new MockVoteForStake(address(new MockSubmitRights()))),
             address(new MockLaunchRegistry(address(token))),
-            routerAddress,
-            factoryAddress,
+            DexConfig({router: routerAddress, pairFactory: factoryAddress, swapFeeForLpRatio: 3000000000000000, swapFeeForProtocolRatio: 0}),
             PROMISED_PHASES,
             10,
             FEE_RATIO,
