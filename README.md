@@ -18,6 +18,12 @@ python3 script/verify_source.py <profile> ...
 `run.sh` 做三件事：把 profile 配置导出成环境变量；必要时先编译参考实现；跑 `forge test`
 并落盘日志。探针本身不知道任何链的地址。
 
+> **不要裸跑 `forge test`。** 测试通过 `vm.getCode` 读取固定 Uniswap V2 参考实现的产物，
+> 而 `forge build --force` 会清空 `out/`、把这批产物一并删掉，紧接着裸跑 `forge test` 会得到
+> `[FAIL: vm.getCode: no matching artifact found]`。`run.sh` 会先按 `ref-uni-core` /
+> `ref-uni-periphery` / `ref-weth` 三个 profile 重建它们再跑测试，所以本仓的测试入口是
+> `./script/run.sh <profile>`。若已裸跑过 `--force`，重跑一次 `run.sh` 即可恢复。
+
 ## 接一个新网络
 
 在 `config/networks/` 加一份 JSON 即可，不需要碰代码：
