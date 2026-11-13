@@ -1,17 +1,26 @@
 No files changed, compilation skipped
 
+Ran 6 tests for test/CoreAuditFindings.t.sol:CoreAuditFindingsTest
+[PASS] testCurrentRoundSubmissionBlocksMerge() (gas: 31818624)
+[PASS] testCurrentRoundVoteBlocksMerge() (gas: 31947857)
+[PASS] testFakeTokenCannotSpendAnotherCommunityBoost() (gas: 37425301)
+[PASS] testFreshCapitalCanStillGrowProposalCountPastThresholdBound() (gas: 45370227)
+[PASS] testPrecreatedPairDoesNotBlockChildLaunch() (gas: 32360281)
+[PASS] testProposalCreationCallbackCannotMergeSource() (gas: 30697864)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 10.44ms (18.59ms CPU time)
+
 Ran 11 tests for test/CompatibilityProbe.t.sol:CompatibilityProbe
 [PASS] test_01_wrapper() (gas: 216126)
-[PASS] test_02_factory() (gas: 2884813)
-[PASS] test_03_pairMint() (gas: 579322)
-[PASS] test_04_pairBurnBoundary() (gas: 614115)
-[PASS] test_05_pairProtocolFee() (gas: 747441)
-[PASS] test_06_pairErc20() (gas: 415412)
-[PASS] test_07_routerQuote() (gas: 352694)
-[PASS] test_08_routerSwap() (gas: 591365)
-[PASS] test_09_routerFailures() (gas: 1250190)
-[PASS] test_10_stakeReplay() (gas: 2123857)
-[PASS] test_11_slippageGuard() (gas: 640432)
-Suite result: ok. 11 passed; 0 failed; 0 skipped; finished in 1.84s (40.64ms CPU time)
+[PASS] test_02_factory() (gas: 2863745)
+[PASS] test_03_pairMint() (gas: 579278)
+[PASS] test_04_pairBurnBoundary() (gas: 613994)
+[PASS] test_05_pairProtocolFee() (gas: 745196)
+[PASS] test_06_pairErc20() (gas: 415390)
+[PASS] test_07_routerQuote() (gas: 352672)
+[PASS] test_08_routerSwap() (gas: 591233)
+[PASS] test_09_routerFailures() (gas: 1229177)
+[PASS] test_10_stakeReplay() (gas: 2667379)
+[PASS] test_11_offRatioDeposit() (gas: 1115451)
+Suite result: ok. 11 passed; 0 failed; 0 skipped; finished in 2.50s (1.61s CPU time)
 
-Ran 1 test suite in 1.84s (1.84s CPU time): 11 tests passed, 0 failed, 0 skipped (11 total tests)
+Ran 2 test suites in 2.50s (2.51s CPU time): 17 tests passed, 0 failed, 0 skipped (17 total tests)

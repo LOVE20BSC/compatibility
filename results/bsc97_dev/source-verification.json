@@ -1,0 +1,167 @@
+{
+  "profile": "bsc97_dev",
+  "chainId": 97,
+  "rpc": [
+    "https://bsc-testnet.publicnode.com"
+  ],
+  "rpcHealthy": [
+    "https://bsc-testnet.publicnode.com"
+  ],
+  "observedBlock": 142388581,
+  "pinnedBlock": 131648000,
+  "targets": {
+    "pair": {
+      "address": "0x3d8ee5b7249df76e8fb6cf2ec53956a02fa22369",
+      "rpcFailures": {},
+      "agreementAcrossRpc": false,
+      "codeSize": 8666,
+      "codeSha256": {
+        "https://bsc-testnet.publicnode.com": "04c04e336cc883df4a2ab7975343f545cbdd6a9f72f2fb6228c4c905967ac4a6"
+      },
+      "metadata": {
+        "kind": "bzzr1",
+        "metadataBytes": 52
+      },
+      "codeSizeNoMetadata": 8614,
+      "match": null,
+      "attempts": 24,
+      "interface": {
+        "token0()": {
+          "selector": "0x0dfe1681",
+          "present": true
+        },
+        "getReserves()": {
+          "selector": "0x0902f1ac",
+          "present": true
+        },
+        "totalSupply()": {
+          "selector": "0x18160ddd",
+          "present": true
+        },
+        "mint(address)": {
+          "selector": "0x6a627842",
+          "present": true
+        },
+        "burn(address)": {
+          "selector": "0x89afcb44",
+          "present": true
+        },
+        "transfer(address,uint256)": {
+          "selector": "0xa9059cbb",
+          "present": true
+        },
+        "approve(address,uint256)": {
+          "selector": "0x095ea7b3",
+          "present": true
+        },
+        "transferFrom(address,address,uint256)": {
+          "selector": "0x23b872dd",
+          "present": true
+        },
+        "allPresent": true
+      }
+    },
+    "factory": {
+      "address": "0x6725F303b657a9451D8BA641348b6761A6CC7a17",
+      "rpcFailures": {},
+      "agreementAcrossRpc": false,
+      "codeSize": 10792,
+      "codeSha256": {
+        "https://bsc-testnet.publicnode.com": "a6ccdefd5eba543761e60173b70ba6fdf2943da86728608b6becedf6888ca276"
+      },
+      "metadata": {
+        "kind": "bzzr1",
+        "metadataBytes": 186
+      },
+      "codeSizeNoMetadata": 10606,
+      "match": null,
+      "attempts": 24,
+      "interface": {
+        "getPair(address,address)": {
+          "selector": "0xe6a43905",
+          "present": true
+        },
+        "createPair(address,address)": {
+          "selector": "0xc9c65396",
+          "present": true
+        },
+        "allPresent": true
+      }
+    },
+    "router": {
+      "address": "0xD99D1c33F9fC3444f8101754aBC46c52416550D1",
+      "rpcFailures": {},
+      "agreementAcrossRpc": false,
+      "codeSize": 18089,
+      "codeSha256": {
+        "https://bsc-testnet.publicnode.com": "ccef702d8eec64389ce804466d05635e3b123f99ab6502304d11fded2ad203a0"
+      },
+      "metadata": {
+        "kind": "ipfs",
+        "metadataBytes": 53
+      },
+      "codeSizeNoMetadata": 18036,
+      "match": null,
+      "attempts": 48,
+      "interface": {
+        "getAmountsOut(uint256,address[])": {
+          "selector": "0xd06ca61f",
+          "present": true
+        },
+        "swapExactTokensForTokens(uint256,uint256,address[],address,uint256)": {
+          "selector": "0x38ed1739",
+          "present": true
+        },
+        "allPresent": true
+      }
+    },
+    "wbnb": {
+      "address": "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd",
+      "rpcFailures": {},
+      "agreementAcrossRpc": false,
+      "codeSize": 3124,
+      "codeSha256": {
+        "https://bsc-testnet.publicnode.com": "e96eee25c3a063ffcfbe4ae2aa2c44e5c99ddf236adb7828676f6fd7f8605742"
+      },
+      "metadata": {
+        "kind": "none",
+        "metadataBytes": 0
+      },
+      "codeSizeNoMetadata": 3124,
+      "match": null,
+      "attempts": 24,
+      "interface": {
+        "deposit()": {
+          "selector": "0xd0e30db0",
+          "present": true
+        },
+        "withdraw(uint256)": {
+          "selector": "0x2e1a7d4d",
+          "present": true
+        },
+        "balanceOf(address)": {
+          "selector": "0x70a08231",
+          "present": true
+        },
+        "transfer(address,uint256)": {
+          "selector": "0xa9059cbb",
+          "present": true
+        },
+        "approve(address,uint256)": {
+          "selector": "0x095ea7b3",
+          "present": true
+        },
+        "transferFrom(address,address,uint256)": {
+          "selector": "0x23b872dd",
+          "present": true
+        },
+        "decimals()": {
+          "selector": "0x313ce567",
+          "present": true
+        },
+        "allPresent": true
+      }
+    }
+  },
+  "verdict": "mismatch"
+}

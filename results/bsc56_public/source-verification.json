@@ -11,7 +11,7 @@
     "https://bsc.meowrpc.com",
     "https://api.zan.top/bsc-mainnet"
   ],
-  "observedBlock": 122508331,
+  "observedBlock": 133248155,
   "pinnedBlock": 122503000,
   "targets": {
     "pair": {

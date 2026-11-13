@@ -18,6 +18,7 @@ interface Vm {
     function envOr(string calldata name, bool defaultValue) external view returns (bool value);
     function envOr(string calldata name, uint256 defaultValue) external view returns (uint256 value);
     function envOr(string calldata name, string calldata defaultValue) external view returns (string memory value);
+    function envExists(string calldata name) external view returns (bool result);
 
     // chains
     function createSelectFork(string calldata urlOrAlias, uint256 blockNumber) external returns (uint256 forkId);

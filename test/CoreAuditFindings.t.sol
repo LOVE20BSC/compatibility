@@ -179,7 +179,7 @@ contract CoreAuditFindingsTest is CompatBase {
         vm.startPrank(victimOwner);
         s.victim.approve(address(s.stake), type(uint256).max);
         s.weth.approve(address(s.stake), type(uint256).max);
-        s.stake.stakeLiquidity(address(s.victim), 1000 ether, 10 ether, 1e18, 1, victimMemberId);
+        s.stake.stakeLiquidity(address(s.victim), 1000 ether, 10 ether, 1, victimMemberId);
         s.stake.stakeBoost(address(s.victim), 100 ether, 1, victimMemberId);
         vm.stopPrank();
 
@@ -194,7 +194,7 @@ contract CoreAuditFindingsTest is CompatBase {
         vm.expectRevert(
             abi.encodeWithSelector(IStakeErrors.TokenNotRegistered.selector, address(s.fakeChild))
         );
-        s.stake.stakeLiquidity(address(s.fakeChild), 10_000 ether, 10_000 ether, 1e18, 1, s.memberId);
+        s.stake.stakeLiquidity(address(s.fakeChild), 10_000 ether, 10_000 ether, 1, s.memberId);
         s.fakeChild.setParent(address(s.victim));
 
         uint256 storedBoost = s.victim.balanceOf(address(s.stake));
@@ -238,7 +238,7 @@ contract CoreAuditFindingsTest is CompatBase {
         AuditState memory s = _deployCore();
         s.victim.approve(address(s.stake), type(uint256).max);
         s.weth.approve(address(s.stake), type(uint256).max);
-        s.stake.stakeLiquidity(address(s.victim), 1000 ether, 10 ether, 1e18, 1, s.memberId);
+        s.stake.stakeLiquidity(address(s.victim), 1000 ether, 10 ether, 1, s.memberId);
         ProposalBody memory body = ProposalBody({
             title: "proposal",
             details: "",
@@ -269,7 +269,7 @@ contract CoreAuditFindingsTest is CompatBase {
         AuditState memory s = _deployCore();
         s.victim.approve(address(s.stake), type(uint256).max);
         s.weth.approve(address(s.stake), type(uint256).max);
-        s.stake.stakeLiquidity(address(s.victim), 1000 ether, 10 ether, 1e18, 1, s.memberId);
+        s.stake.stakeLiquidity(address(s.victim), 1000 ether, 10 ether, 1, s.memberId);
         (uint256 nextMemberId,) = s.member.mint("next");
         _callbackStake = s.stake;
         _callbackToken = address(s.victim);
@@ -295,9 +295,9 @@ contract CoreAuditFindingsTest is CompatBase {
         AuditState memory s = _deployCore();
         s.victim.approve(address(s.stake), type(uint256).max);
         s.weth.approve(address(s.stake), type(uint256).max);
-        s.stake.stakeLiquidity(address(s.victim), 1000 ether, 10 ether, 1e18, 1, s.memberId);
+        s.stake.stakeLiquidity(address(s.victim), 1000 ether, 10 ether, 1, s.memberId);
         (uint256 voterId,) = s.member.mint("voter");
-        s.stake.stakeLiquidity(address(s.victim), 1000 ether, 10 ether, 1e18, 1, voterId);
+        s.stake.stakeLiquidity(address(s.victim), 1000 ether, 10 ether, 1, voterId);
         uint256 proposalId = s.submit
             .submitNewProposal(
                 address(s.victim),

@@ -3,7 +3,7 @@ pragma solidity =0.8.37;
 
 import {CompatBase, IERC20Like, IWBNB, IFactoryDiagnostics, IPairDiagnostics} from "../src/CompatBase.sol";
 import {Stake} from "@core/Stake.sol";
-import {IStake, IStakeErrors} from "@core/interfaces/IStake.sol";
+import {IStake} from "@core/interfaces/IStake.sol";
 import {IUniswapV2Pair} from "@core/interfaces/UniswapV2/IUniswapV2Pair.sol";
 import {IUniswapV2Factory} from "@core/interfaces/UniswapV2/IUniswapV2Factory.sol";
 import {IUniswapV2Router02} from "@core/interfaces/UniswapV2/IUniswapV2Router02.sol";
@@ -41,7 +41,10 @@ contract CompatibilityProbe is CompatBase {
     // 1e18 = 100% of the pair's LP supply; 1e14 is the old 1/10000 fee denominator.
     uint256 internal constant FEE_RATIO = 1e14;
     uint256 internal constant PROMISED_PHASES = 1;
-    uint256 internal constant SLIPPAGE = 1e17;
+    // Probe 11 deliberately offers more token than the pool ratio can take, so the token side is the one
+    // the conversion trims and the surplus has to stay in the caller's wallet.
+    uint256 internal constant OFF_RATIO_TOKEN = 1e21;
+    uint256 internal constant OFF_RATIO_PARENT = 5e17;
     // The quote may be missed by at most one part in a million.
     uint256 internal constant QUOTE_TOLERANCE = 1_000_000;
 
@@ -437,28 +440,62 @@ contract CompatibilityProbe is CompatBase {
         measure("stake_withdraw_parentOut", parentOut);
     }
 
-    function test_11_slippageGuard() public {
+    /// @dev This probe used to drive the `slippage` parameter: an off-ratio deposit reverted with
+    ///      `SlippageExceeded` and rolled back. Neither the parameter nor the error exists any more, so
+    ///      the same deposit must now be trimmed to the reserves and accepted, with the surplus left in
+    ///      the caller's wallet. Same number of verdicts, pointed at the only behaviour left to check.
+    function test_11_offRatioDeposit() public {
         stakeAs(1, 1e21, 1e18);
         (uint256 rToken, uint256 rParent, uint256 supply) = sortedReserves(pair, address(token));
-        uint256 stakerToken = IERC20Like(address(token)).balanceOf(staker);
-        uint256 stakerParent = IERC20Like(wbnbAddress).balanceOf(staker);
 
-        vm.prank(staker);
-        (bool ok, bytes memory out) = address(stake).call(
-            abi.encodeWithSelector(IStake.stakeLiquidity.selector, address(token), 1e21, 5e17, 0, PROMISED_PHASES, uint256(2))
-        );
-        check(!ok, "stake.slippageGuardRejects", "a deposit off the pool ratio must fail at zero slippage");
-        if (!ok) {
-            check(bytes4(out) == IStakeErrors.SlippageExceeded.selector, "stake.slippageErrorSelector", "must be SlippageExceeded");
-        }
-        (uint256 rTokenAfter, uint256 rParentAfter, uint256 supplyAfter) = sortedReserves(pair, address(token));
-        check(rTokenAfter == rToken && rParentAfter == rParent && supplyAfter == supply, "stake.slippageRollbackKeepsPool", "");
+        (bool ok, uint256 govVotesAdded, uint256 liquiditySharesAdded, uint256 spentToken, uint256 spentParent) =
+            stakeOffRatio();
+
         check(
-            IERC20Like(address(token)).balanceOf(staker) == stakerToken
-                && IERC20Like(wbnbAddress).balanceOf(staker) == stakerParent,
-            "stake.slippageRollbackKeepsBalances",
-            ""
+            ok,
+            "stake.offRatioDepositAccepted",
+            "no slippage parameter is left, so an off-ratio deposit must be trimmed rather than rejected"
         );
+        checkEq(spentToken, (OFF_RATIO_PARENT * rToken) / rParent, "stake.offRatioRemainderStaysWithCaller");
+        checkEq(spentParent, OFF_RATIO_PARENT, "stake.offRatioKeepsParentSide");
+        check(
+            liquiditySharesAdded != 0 && govVotesAdded == liquiditySharesAdded * PROMISED_PHASES,
+            "stake.offRatioCreditsVotesOnWhatLanded",
+            string.concat("shares=", vm.toString(liquiditySharesAdded), " votes=", vm.toString(govVotesAdded))
+        );
+        (uint256 rTokenAfter, uint256 rParentAfter, uint256 supplyAfter) = sortedReserves(pair, address(token));
+        check(
+            rTokenAfter == rToken + spentToken && rParentAfter == rParent + spentParent && supplyAfter > supply,
+            "stake.offRatioGrowsThePool",
+            string.concat("supply=", vm.toString(supplyAfter - supply))
+        );
+    }
+
+    /// @dev The off-ratio deposit of probe 11, split out so the probe itself stays inside the stack limit.
+    ///      `OFF_RATIO_TOKEN` is far more than the pool ratio allows, so the surplus must stay behind.
+    function stakeOffRatio()
+        internal
+        returns (bool ok, uint256 govVotesAdded, uint256 liquiditySharesAdded, uint256 spentToken, uint256 spentParent)
+    {
+        uint256 tokenBefore = IERC20Like(address(token)).balanceOf(staker);
+        uint256 parentBefore = IERC20Like(wbnbAddress).balanceOf(staker);
+
+        bytes memory out;
+        vm.prank(staker);
+        (ok, out) = address(stake).call(
+            abi.encodeWithSelector(
+                IStake.stakeLiquidity.selector,
+                address(token),
+                OFF_RATIO_TOKEN,
+                OFF_RATIO_PARENT,
+                PROMISED_PHASES,
+                uint256(2)
+            )
+        );
+        if (ok) (govVotesAdded, liquiditySharesAdded) = abi.decode(out, (uint256, uint256));
+
+        spentToken = tokenBefore - IERC20Like(address(token)).balanceOf(staker);
+        spentParent = parentBefore - IERC20Like(wbnbAddress).balanceOf(staker);
     }
 
 
@@ -492,7 +529,7 @@ contract CompatibilityProbe is CompatBase {
 
     function stakeAs(uint256 memberId, uint256 tokenAmount, uint256 parentAmount) internal {
         vm.prank(staker);
-        stake.stakeLiquidity(address(token), tokenAmount, parentAmount, SLIPPAGE, PROMISED_PHASES, memberId);
+        stake.stakeLiquidity(address(token), tokenAmount, parentAmount, PROMISED_PHASES, memberId);
     }
 
     function globalData() internal view returns (uint256 shares, uint256 lp, uint256 withdrawable, uint256 fee) {

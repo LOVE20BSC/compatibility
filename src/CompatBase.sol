@@ -64,13 +64,21 @@ abstract contract CompatBase {
     address internal factoryAddress;
     address internal routerAddress;
 
+    /// @dev A profile arrives as environment variables, set by `script/run.sh`. A bare `forge test` has
+    ///      none, which used to fail inside `envString` before any probe ran. Running with no
+    ///      configuration at all now means the local reference (`anvil`), the one profile that needs no
+    ///      RPC; a profile that *is* named but is missing its fork variables is still an error, because
+    ///      silently falling back would report a local verdict under a network's name.
     function loadProfile() internal {
-        profileName = vm.envOr("COMPAT_PROFILE", string("anvil"));
-        localReference = vm.envOr("COMPAT_LOCAL", false);
+        profileName = vm.envOr("COMPAT_PROFILE", string(""));
+        bool unconfigured = !vm.envExists("COMPAT_PROFILE") && !vm.envExists("COMPAT_LOCAL");
+        if (unconfigured) profileName = "anvil";
+        localReference = unconfigured || vm.envOr("COMPAT_LOCAL", false);
 
         if (localReference) {
             deployReference();
         } else {
+            require(vm.envExists("COMPAT_RPC_URL"), string.concat(profileName, ": COMPAT_RPC_URL is not set"));
             string memory rpc = vm.envString("COMPAT_RPC_URL");
             forkBlock = vm.envUint("COMPAT_FORK_BLOCK");
             vm.createSelectFork(rpc, forkBlock);
