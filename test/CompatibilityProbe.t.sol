@@ -2,7 +2,8 @@
 pragma solidity =0.8.37;
 
 import {CompatBase, IERC20Like, IWBNB, IFactoryDiagnostics, IPairDiagnostics} from "../src/CompatBase.sol";
-import {Stake, DexConfig} from "@core/Stake.sol";
+import {Stake} from "@core/Stake.sol";
+import {DexConfig} from "@core/interfaces/IStake.sol";
 import {IStake} from "@core/interfaces/IStake.sol";
 import {IUniswapV2Pair} from "@core/interfaces/UniswapV2/IUniswapV2Pair.sol";
 import {IUniswapV2Factory} from "@core/interfaces/UniswapV2/IUniswapV2Factory.sol";
