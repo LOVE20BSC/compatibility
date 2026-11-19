@@ -59,8 +59,8 @@ contract AuditStakeVotes {
         total = total_;
     }
 
-    function validGovVotes(address, uint256, uint256 memberId) external view returns (uint256) { return _votes[memberId]; }
-    function totalValidGovVotes(address, uint256) external view returns (uint256) { return total; }
+    function govVotes(address, uint256, uint256 memberId) external view returns (uint256) { return _votes[memberId]; }
+    function totalGovVotes(address, uint256) external view returns (uint256) { return total; }
 }
 
 contract CoreAuditFindingsTest is CompatBase {
@@ -104,8 +104,7 @@ contract CoreAuditFindingsTest is CompatBase {
     function onProposalVoted(address, uint256, uint256, uint256, uint256, bytes[] calldata) external {}
 
     function _deployCore() private returns (AuditState memory s) {
-        // Constructor injection leaves two cycles (Launch/MemberNFT and Stake/Vote). Predict the
-        // CREATE addresses from this harness's deployment order, exactly as DeployCore does. The
+        // Predict the forward CREATE addresses for MemberNFT, Vote and Mint, as DeployCore does. The
         // offsets are pinned by the three require() checks below, so a reordering fails loudly.
         uint256 nonce = vm.getNonce(address(this));
         address predictedMemberNFT = vm.computeCreateAddress(address(this), nonce + 6);
@@ -153,7 +152,7 @@ contract CoreAuditFindingsTest is CompatBase {
             5
         );
         s.submit = new Submit(address(s.phase), address(s.stake), address(s.member), 1e16);
-        s.vote = new Vote(address(s.phase), address(s.stake), address(s.submit), address(s.member));
+        s.vote = new Vote(address(s.phase), address(s.stake), address(s.submit), address(s.member), predictedMint);
         require(address(s.vote) == predictedVote, "Vote address differs from prediction");
         s.mint = new Mint(
             address(s.phase),
@@ -179,8 +178,8 @@ contract CoreAuditFindingsTest is CompatBase {
         vm.startPrank(victimOwner);
         s.victim.approve(address(s.stake), type(uint256).max);
         s.weth.approve(address(s.stake), type(uint256).max);
-        s.stake.stakeLiquidity(address(s.victim), 1000 ether, 10 ether, 1, victimMemberId);
-        s.stake.stakeBoost(address(s.victim), 100 ether, 1, victimMemberId);
+        s.stake.stakeLiquidity(address(s.victim), 1000 ether, 10 ether, 1, victimMemberId, type(uint256).max);
+        s.stake.stakeBoost(address(s.victim), 100 ether, 1, victimMemberId, type(uint256).max);
         vm.stopPrank();
 
         s.fakeParent = new AuditToken("FA", address(s.weth));
@@ -194,7 +193,7 @@ contract CoreAuditFindingsTest is CompatBase {
         vm.expectRevert(
             abi.encodeWithSelector(IStakeErrors.TokenNotRegistered.selector, address(s.fakeChild))
         );
-        s.stake.stakeLiquidity(address(s.fakeChild), 10_000 ether, 10_000 ether, 1, s.memberId);
+        s.stake.stakeLiquidity(address(s.fakeChild), 10_000 ether, 10_000 ether, 1, s.memberId, type(uint256).max);
         s.fakeChild.setParent(address(s.victim));
 
         uint256 storedBoost = s.victim.balanceOf(address(s.stake));
@@ -210,7 +209,7 @@ contract CoreAuditFindingsTest is CompatBase {
         s.stake.unstake(address(s.victim), victimMemberId);
         vm.roll(21);
         vm.prank(victimOwner);
-        s.stake.withdraw(address(s.victim), victimMemberId);
+        s.stake.withdraw(address(s.victim), victimMemberId, type(uint256).max);
         require(s.victim.balanceOf(victimOwner) >= storedBoost, "Victim could not recover boost");
     }
 
@@ -238,7 +237,7 @@ contract CoreAuditFindingsTest is CompatBase {
         AuditState memory s = _deployCore();
         s.victim.approve(address(s.stake), type(uint256).max);
         s.weth.approve(address(s.stake), type(uint256).max);
-        s.stake.stakeLiquidity(address(s.victim), 1000 ether, 10 ether, 1, s.memberId);
+        s.stake.stakeLiquidity(address(s.victim), 1000 ether, 10 ether, 1, s.memberId, type(uint256).max);
         ProposalBody memory body = ProposalBody({
             title: "proposal",
             details: "",
@@ -254,13 +253,18 @@ contract CoreAuditFindingsTest is CompatBase {
         );
         s.stake.mergeStake(address(s.victim), s.memberId, nextMemberId);
 
-        vm.roll(11);
-        require(s.submit.proposalIdBySubmitterId(address(s.victim), 2, s.memberId) == 0, "Previous round leaked into current round");
+        uint256 mergeRound = 3;
+        (uint256 mergeBlock,) = s.phase.phaseInfo(mergeRound);
+        vm.roll(mergeBlock);
+        require(
+            s.submit.proposalIdBySubmitterId(address(s.victim), mergeRound, s.memberId) == 0,
+            "Previous round leaked into current round"
+        );
         s.stake.mergeStake(address(s.victim), s.memberId, nextMemberId);
         s.submit.submit(address(s.victim), nextMemberId, proposalId);
         (uint256 thirdMemberId,) = s.member.mint("third");
         vm.expectRevert(
-            abi.encodeWithSelector(IStakeErrors.StakeRightsUsed.selector, address(s.victim), 2, nextMemberId)
+            abi.encodeWithSelector(IStakeErrors.StakeRightsUsed.selector, address(s.victim), mergeRound, nextMemberId)
         );
         s.stake.mergeStake(address(s.victim), nextMemberId, thirdMemberId);
     }
@@ -269,7 +273,7 @@ contract CoreAuditFindingsTest is CompatBase {
         AuditState memory s = _deployCore();
         s.victim.approve(address(s.stake), type(uint256).max);
         s.weth.approve(address(s.stake), type(uint256).max);
-        s.stake.stakeLiquidity(address(s.victim), 1000 ether, 10 ether, 1, s.memberId);
+        s.stake.stakeLiquidity(address(s.victim), 1000 ether, 10 ether, 1, s.memberId, type(uint256).max);
         (uint256 nextMemberId,) = s.member.mint("next");
         _callbackStake = s.stake;
         _callbackToken = address(s.victim);
@@ -295,9 +299,9 @@ contract CoreAuditFindingsTest is CompatBase {
         AuditState memory s = _deployCore();
         s.victim.approve(address(s.stake), type(uint256).max);
         s.weth.approve(address(s.stake), type(uint256).max);
-        s.stake.stakeLiquidity(address(s.victim), 1000 ether, 10 ether, 1, s.memberId);
+        s.stake.stakeLiquidity(address(s.victim), 1000 ether, 10 ether, 1, s.memberId, type(uint256).max);
         (uint256 voterId,) = s.member.mint("voter");
-        s.stake.stakeLiquidity(address(s.victim), 1000 ether, 10 ether, 1, voterId);
+        s.stake.stakeLiquidity(address(s.victim), 1000 ether, 10 ether, 1, voterId, type(uint256).max);
         uint256 proposalId = s.submit
             .submitNewProposal(
                 address(s.victim),
@@ -320,7 +324,8 @@ contract CoreAuditFindingsTest is CompatBase {
             abi.encodeWithSelector(IStakeErrors.StakeRightsUsed.selector, address(s.victim), 1, voterId)
         );
         s.stake.mergeStake(address(s.victim), voterId, nextMemberId);
-        vm.roll(11);
+        (uint256 mergeBlock,) = s.phase.phaseInfo(3);
+        vm.roll(mergeBlock);
         s.stake.mergeStake(address(s.victim), voterId, nextMemberId);
     }
 

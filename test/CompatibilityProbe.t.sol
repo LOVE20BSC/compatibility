@@ -425,7 +425,7 @@ contract CompatibilityProbe is CompatBase {
         uint256 tokenBefore = IERC20Like(address(token)).balanceOf(staker);
         uint256 parentBefore = IERC20Like(wbnbAddress).balanceOf(staker);
         vm.prank(staker);
-        stake.withdraw(address(token), 1);
+        stake.withdraw(address(token), 1, type(uint256).max);
         uint256 tokenOut = IERC20Like(address(token)).balanceOf(staker) - tokenBefore;
         uint256 parentOut = IERC20Like(wbnbAddress).balanceOf(staker) - parentBefore;
 
@@ -483,13 +483,9 @@ contract CompatibilityProbe is CompatBase {
         bytes memory out;
         vm.prank(staker);
         (ok, out) = address(stake).call(
-            abi.encodeWithSelector(
-                IStake.stakeLiquidity.selector,
-                address(token),
-                OFF_RATIO_TOKEN,
-                OFF_RATIO_PARENT,
-                PROMISED_PHASES,
-                uint256(2)
+            abi.encodeCall(
+                IStake.stakeLiquidity,
+                (address(token), OFF_RATIO_TOKEN, OFF_RATIO_PARENT, PROMISED_PHASES, 2, type(uint256).max)
             )
         );
         if (ok) (govVotesAdded, liquiditySharesAdded) = abi.decode(out, (uint256, uint256));
@@ -529,7 +525,7 @@ contract CompatibilityProbe is CompatBase {
 
     function stakeAs(uint256 memberId, uint256 tokenAmount, uint256 parentAmount) internal {
         vm.prank(staker);
-        stake.stakeLiquidity(address(token), tokenAmount, parentAmount, PROMISED_PHASES, memberId);
+        stake.stakeLiquidity(address(token), tokenAmount, parentAmount, PROMISED_PHASES, memberId, type(uint256).max);
     }
 
     function globalData() internal view returns (uint256 shares, uint256 lp, uint256 withdrawable, uint256 fee) {
