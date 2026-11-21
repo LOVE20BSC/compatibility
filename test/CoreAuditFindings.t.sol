@@ -93,15 +93,15 @@ contract CoreAuditFindingsTest is CompatBase {
         return 0x150b7a02;
     }
 
-    function onProposalCreated(address, uint256, bytes[] calldata) external {
+    function onProposalCreated(address, uint256, bytes calldata) external {
         (bool merged,) = address(_callbackStake)
             .call(abi.encodeWithSelector(Stake.mergeStake.selector, _callbackToken, _callbackSource, _callbackTarget));
         _callbackMergeBlocked = !merged;
     }
 
-    function onProposalSubmitted(address, uint256, uint256, bytes[] calldata) external {}
+    function onProposalSubmitted(address, uint256, uint256, uint256, bytes calldata) external {}
 
-    function onProposalVoted(address, uint256, uint256, uint256, uint256, bytes[] calldata) external {}
+    function onProposalVoted(address, uint256, uint256, uint256, uint256, bytes calldata) external {}
 
     function _deployCore() private returns (AuditState memory s) {
         // Predict the forward CREATE addresses for MemberNFT, Vote and Mint, as DeployCore does. The
@@ -224,10 +224,8 @@ contract CoreAuditFindingsTest is CompatBase {
         vm.prank(address(0xA77A));
         address precreatedPair = s.factory.createPair(nextToken, address(s.victim));
 
-        address child = s.launch
-            .launchToken(
-                "ABC", address(s.victim), s.memberId, address(this), DistributorMode.NoCallback, new bytes[](0)
-            );
+        address child =
+            s.launch.launchToken("ABC", address(s.victim), s.memberId, address(this), DistributorMode.NoCallback, "");
         require(child == nextToken, "Launch did not deploy the predicted token");
         require(s.factory.getPair(child, address(s.victim)) == precreatedPair, "Launch did not reuse the pair");
         require(s.launch.remainingLaunchCount(address(s.victim), s.memberId) == 0, "Launch count was not consumed");
@@ -243,9 +241,9 @@ contract CoreAuditFindingsTest is CompatBase {
             details: "",
             target: address(this),
             targetMode: TargetMode.NoCallback,
-            targetData: new bytes[](0)
+            creationData: ""
         });
-        uint256 proposalId = s.submit.submitNewProposal(address(s.victim), s.memberId, body);
+        uint256 proposalId = s.submit.submitNewProposal(address(s.victim), s.memberId, body, "");
         require(s.submit.proposalIdBySubmitterId(address(s.victim), 1, s.memberId) == proposalId, "Submission was not recorded");
         (uint256 nextMemberId,) = s.member.mint("next");
         vm.expectRevert(
@@ -261,7 +259,7 @@ contract CoreAuditFindingsTest is CompatBase {
             "Previous round leaked into current round"
         );
         s.stake.mergeStake(address(s.victim), s.memberId, nextMemberId);
-        s.submit.submit(address(s.victim), nextMemberId, proposalId);
+        s.submit.submit(address(s.victim), nextMemberId, proposalId, "");
         (uint256 thirdMemberId,) = s.member.mint("third");
         vm.expectRevert(
             abi.encodeWithSelector(IStakeErrors.StakeRightsUsed.selector, address(s.victim), mergeRound, nextMemberId)
@@ -289,8 +287,9 @@ contract CoreAuditFindingsTest is CompatBase {
                     details: "",
                     target: address(this),
                     targetMode: TargetMode.Callback,
-                    targetData: new bytes[](0)
-                })
+                    creationData: ""
+                }),
+                ""
             );
         require(_callbackMergeBlocked, "Proposal creation callback merged used stake");
     }
@@ -311,14 +310,15 @@ contract CoreAuditFindingsTest is CompatBase {
                     details: "",
                     target: address(this),
                     targetMode: TargetMode.NoCallback,
-                    targetData: new bytes[](0)
-                })
+                    creationData: ""
+                }),
+                ""
             );
         uint256[] memory ids = new uint256[](1);
         ids[0] = proposalId;
         uint256[] memory votes = new uint256[](1);
         votes[0] = 1;
-        s.vote.vote(address(s.victim), voterId, ids, votes, new bytes[][](0));
+        s.vote.vote(address(s.victim), voterId, ids, votes, new bytes[](0));
         (uint256 nextMemberId,) = s.member.mint("next");
         vm.expectRevert(
             abi.encodeWithSelector(IStakeErrors.StakeRightsUsed.selector, address(s.victim), 1, voterId)
@@ -336,14 +336,14 @@ contract CoreAuditFindingsTest is CompatBase {
         Submit submit = new Submit(address(phase), address(votes), address(members), 1e16);
         ProposalBody memory body = ProposalBody({
             title: "proposal", details: "", target: address(this), targetMode: TargetMode.NoCallback,
-            targetData: new bytes[](0)
+            creationData: ""
         });
 
         for (uint256 memberId = 1; memberId <= 101; memberId++) {
             uint256 total = memberId == 1 ? 1000 : memberId * 100;
             uint256 memberVotes = memberId == 101 ? 102 : 100;
             votes.set(memberId, memberVotes, total);
-            submit.submitNewProposal(address(0xBEEF), memberId, body);
+            submit.submitNewProposal(address(0xBEEF), memberId, body, "");
         }
 
         (, uint256 totalProposals) = submit.submitInfos(address(0xBEEF), 1, 0, 0, false);
